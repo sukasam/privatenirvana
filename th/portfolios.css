@@ -1,0 +1,489 @@
+.primaryContainer {
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100%;
+    width: 100%;
+    background-image:url("img/bg.jpg");
+    background-attachment: scroll;
+    -webkit-background-size: auto;
+    background-size: auto;
+    background-color: rgb(221, 221, 221);
+    background-position: 50% 0%;
+    background-repeat: no-repeat no-repeat;
+}
+
+.house-info-sect {
+    float: none;
+    height: auto;
+    margin-left: auto;
+    margin-top: 48px;
+    clear: none;
+    width: 100%;
+    margin-right: auto;
+    padding: 72px 16px;
+    background-image:url("img/IMG_0965.jpg");
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: 50% 60%;
+    background-repeat: no-repeat no-repeat;
+}
+
+.house-baner-title {
+    float: none;
+    height: auto;
+    margin-left: auto;
+    margin-top: 0px;
+    clear: none;
+    width: 100%;
+    position: relative;
+    z-index: 100;
+    padding: 32px 24px;
+    display: block;
+    background-color: rgba(0, 0, 0, 0);
+    margin-right: auto;
+}
+
+.house-baner-txt {
+    float: none;
+    font-size: 25px;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-weight: normal;
+    line-height: 30px;
+    margin: 0px auto;
+    clear: none;
+    min-height: 0px;
+    color: rgb(255, 255, 255);
+}
+
+.house-baner-txt1 {
+    float: none;
+    font-size: 20px;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-weight: normal;
+    line-height: 25px;
+    margin: 24px auto 0px;
+    clear: none;
+    min-height: 0px;
+    color: rgb(255, 255, 255);
+}
+
+
+.house-project-title {
+    float: none;
+    font-size: 35px;
+    width: 100%;
+    height: auto;
+    text-align: left;
+    font-weight: normal;
+    line-height: 40px;
+    margin-left: auto;
+    margin-top: 0px;
+    clear: none;
+    min-height: 0px;
+    max-width: 1200px;
+    margin-right: auto;
+    font-family: helvetica;
+    color: rgb(102, 102, 102);
+    text-transform: capitalize;
+}
+
+.house-project-btn {
+    float: none;
+    height: 50px;
+    margin-left: auto;
+    margin-top: 32px;
+    clear: none;
+    width: 100%;
+    max-width: 1200px;
+    margin-right: auto;
+}
+
+.house-project-type {
+    float: none;
+    height: auto;
+    margin-left: auto;
+    margin-top: 24px;
+    clear: none;
+    width: 100%;
+    max-width: 1200px;
+    margin-right: auto;
+}
+
+.house-type {
+    float: left;
+    height: auto;
+    margin: 1%;
+    clear: none;
+    width: auto;
+    padding: 8px;
+}
+
+.house-type-img {
+    float: none;
+    height: 200px;
+    margin-left: auto;
+    margin-top: 0px;
+    clear: none;
+    width: 100%;
+    margin-right: auto;
+}
+
+.house-type-txt {
+    float: none;
+    font-size: 1em;
+    width: 100%;
+    height: auto;
+    text-align: left;
+    font-weight: normal;
+    line-height: 1em;
+    margin-left: auto;
+    margin-top: 16px;
+    clear: none;
+    min-height: 0px;
+    margin-right: auto;
+    font-family: helvetica;
+    color: rgb(102, 102, 102);
+}
+
+.port-img-thumbs {
+    float: left;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    margin-left: 0%;
+    margin-top: 0px;
+    clear: none;
+    color: rgb(0, 0, 0);
+    margin-right: 0%;
+}
+
+@media only screen and (max-width: 2560px) {
+    .primaryContainer {
+        position: relative;
+        background-color: rgb(221, 221, 221);
+        background-image:url("img/bg2.jpg");
+        background-attachment: scroll;
+        -webkit-background-size: auto;
+        background-size: auto;
+        background-position: 50% 0%;
+        background-repeat: no-repeat repeat;
+    }
+
+    .house-info-sect {
+        float: none;
+        height: auto;
+        margin-left: auto;
+        margin-top: 48px;
+        clear: none;
+        width: 100%;
+        margin-right: auto;
+        background-image:url("img/IMG_0965.jpg");
+        background-attachment: scroll;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: 50% 60%;
+        background-repeat: no-repeat no-repeat;
+    }
+
+    .house-baner-title {
+        height: auto;
+        margin-top: 0px;
+        clear: none;
+        width: 100%;
+        z-index: 100;
+        padding: 32px 24px;
+        display: block;
+        float: none;
+        margin-left: auto;
+        min-width: 0px;
+        max-width: 1100px;
+        margin-right: auto;
+        -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.4));
+        filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.4));
+    }
+    }
+
+    .house-baner-txt {
+        font-size: 50px;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        font-weight: normal;
+        line-height: 55px;
+        clear: none;
+        min-height: 0px;
+        font-family: helvetica;
+        letter-spacing: 1px;
+        color: rgb(255, 255, 255);
+        -webkit-text-stroke-width: 1.2px;
+    }
+
+    .house-baner-txt1 {
+        font-size: 30px;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        font-weight: normal;
+        line-height: 35px;
+        clear: none;
+        min-height: 0px;
+        font-family: helvetica;
+        letter-spacing: 1px;
+        color: rgb(255, 255, 255);
+    }
+
+    .house-project-sect {
+        float: none;
+        height: auto;
+        margin-left: auto;
+        margin-top: 0px;
+        clear: none;
+        width: 100%;
+        margin-right: auto;
+        padding: 48px 8px 72px 8px;
+    }
+
+    .house-project-title {
+        float: none;
+        font-size: 35px;
+        width: 100%;
+        height: auto;
+        text-align: left;
+        font-weight: normal;
+        line-height: 40px;
+        margin-left: auto;
+        margin-top: 0px;
+        clear: none;
+        min-height: 0px;
+        max-width: 1200px;
+        margin-right: auto;
+        font-family: helvetica;
+        color: rgb(102, 102, 102);
+        text-transform: capitalize;
+        padding-right: 1%;
+        padding-left: 1%;
+        letter-spacing: 1px;
+        -webkit-text-stroke-width: 1.2px;
+    }
+
+    .house-project-btn {
+        float: none;
+        height: 50px;
+        margin-left: auto;
+        margin-top: 24px;
+        clear: none;
+        width: 100%;
+        max-width: 1200px;
+        margin-right: auto;
+        padding-left: 12px;
+    }
+
+    .house-project-type {
+        float: none;
+        height: auto;
+        margin-left: auto;
+        margin-top: 16px;
+        clear: none;
+        width: 100%;
+        max-width: 1200px;
+        margin-right: auto;
+    }
+
+    .house-type {
+        float: left;
+        height: auto;
+        margin: 1%;
+        clear: none;
+        width: auto;
+        padding: 8px;
+    }
+
+    .house-type-img {
+        float: none;
+        height: auto;
+        margin-left: auto;
+        margin-top: 0px;
+        clear: none;
+        width: 100%;
+        margin-right: auto;
+        overflow: hidden;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
+
+    .house-type-txt {
+        float: none;
+        font-size: 1em;
+        width: 100%;
+        height: auto;
+        text-align: left;
+        font-weight: normal;
+        line-height: 1em;
+        margin-left: auto;
+        margin-top: 16px;
+        clear: none;
+        min-height: 0px;
+        margin-right: auto;
+        font-family: helvetica;
+        color: rgb(102, 102, 102);
+    }
+
+    .house-type-txt-sp {
+        float: none;
+        font-size: 22px;
+        line-height: 26px;
+        color: rgb(81, 92, 36);
+        -webkit-text-stroke-width: 0.5px;
+    }
+
+    .house-type-sub-sp {
+        float: none;
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .port-img-thumbs {
+        float: left;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        margin-left: 0%;
+        margin-top: 0px;
+        clear: none;
+        color: rgb(0, 0, 0);
+        margin-right: 0%;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .house-baner-title {
+        width: 70%;
+    }
+
+    .house-baner-txt {
+        font-size: 40px;
+        line-height: 45px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .house-baner-title {
+        width: 90%;
+        max-width: none;
+    }
+
+    .house-baner-txt {
+        font-size: 30px;
+        line-height: 35px;
+        clear: none;
+    }
+
+    .house-baner-txt1 {
+        font-size: 25px;
+        line-height: 30px;
+        clear: none;
+        margin-top: 16px;
+    }
+
+    .house-project-title {
+        font-size: 30px;
+        line-height: 35px;
+        text-align: center;
+    }
+
+    .house-type {
+        width: auto;
+        margin-top: 3%;
+    }
+
+    .house-project-type {
+        margin-top: 8px;
+    }
+
+    .house-type-img {
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .primaryContainer {
+        background-image:url("img/bg2.jpg");
+        background-attachment: scroll;
+        -webkit-background-size: auto;
+        background-size: auto;
+        background-color: rgb(221, 221, 221);
+        background-position: 50% 0%;
+        background-repeat: no-repeat repeat;
+    }
+
+    .house-baner-title {
+        width: 90%;
+    }
+
+    .house-baner-txt {
+        font-size: 30px;
+    line-height: 35px;
+        text-align: center;
+        letter-spacing: 2px;
+    }
+
+    .house-baner-txt1 {
+        font-size: 20px;
+        line-height: 25px;
+        text-align: center;
+    }
+
+    .house-type {
+        width: auto;
+        margin-right: 0%;
+        margin-left: 0%;
+    }
+
+    .house-type-img {
+        height: auto;
+    }
+
+    .house-project-btn {
+        float: none;
+        height: 50px;
+        margin-left: auto;
+        margin-top: 24px;
+        clear: none;
+        width: 100%;
+        margin-right: auto;
+        padding-left: 8px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .house-baner-title {
+        width: 95%;
+    }
+
+    .house-baner-txt {
+        font-size: 30px;
+    line-height: 35px;
+    }
+
+    .house-baner-txt1 {
+        line-height: 25px;
+        font-size: 20px;
+    }
+
+    .house-type {
+        margin-top: 6%;
+    }
+}
+
