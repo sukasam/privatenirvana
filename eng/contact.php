@@ -1,7 +1,42 @@
+<?php
+    include_once('../include/app_top.php');
+
+    if(isset($_GET['action']) && $_GET['action'] === 'sendContact'){
+
+       if($_POST['subcode'] == $_POST['charChk']){
+        $subname = $_POST['subname'];
+        $subemail = $_POST['subemail'];
+        $subsubject = $_POST['subsubject'];
+        $submessage = $_POST['submessage'];
+ 
+         $strTo = EMAIL_CONTACT;
+         $strSubject = "=?UTF-8?B?".base64_encode($subsubject)."?=";
+         $strHeader .= "MIME-Version: 1.0' . \r\n";
+         $strHeader .= "Content-type: text/html; charset=utf-8\r\n"; 
+         $strHeader .= "From: ".$subname."<".$subemail.">\r\nReply-To: ".$subemail;
+         $strMessage = "<h3>".EN_CONTACT_US."</h3>";
+         $strMessage += "Name: ".$subname."<br/>";
+         $strMessage += "Email: ".$subname."<br/>";
+         $strMessage += "Subject: ".$subname."<br/>";
+         $strMessage += "Message: ".nl2br($submessage)."<br/>";
+ 
+         $flgSend = @mail($strTo,$strSubject,$strMessage,$strHeader);  // @ = No Show Error //
+         // if($flgSend){
+         //     echo "Email Sending.";
+         // }
+         // else{
+         //     echo "Email Can Not Send.";
+         // }
+ 
+         echo "<script>alert('".EN_THANK_CONTACT_US."');window.location='".curPageURLWithoutParam()."'</script>;";
+       }else{
+         echo "<script>alert('".EN_SECU_CODE_ERRORS."');window.location='".curPageURLWithoutParam()."'</script>;";
+       }
+
+    }
+?>
 <!DOCTYPE html>
 <html>
-
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0">
@@ -10,10 +45,16 @@
     <link rel="stylesheet" href="contact.css">
     <script src="js/form.js"></script>
 
-
+    <script>
+    function secCode(){
+        var randomSec = Math.floor(10000 + Math.random() * 99999);
+        document.getElementById("charChk").value = randomSec;
+        document.getElementById("charRandom").innerHTML = randomSec;
+    }
+    </script>
 </head>
 
-<body>
+<body onload="secCode();">
 
     <div class="primaryContainer" class="primaryContainer clearfix">
 
@@ -39,9 +80,7 @@
                         <i class="icon icon-phone grd-color txt-56"></i>
                     </div>
                     <p class="contact-info-phone">
-                        <span class="contact-info-phone-span">PHONE</span><br />Phone&#x3a; &#x2b;66 &#x28;0&#x29; 2538
-                        4884, <br />Sales Dept. &#x2b;66 &#x28;0&#x29; 2538 3883<br />Mobile&#x3a; &#x2b;66
-                        &#x28;0&#x29;8 1984 7554&nbsp;<br /> Fax&#x3a; &#x2b;66 &#x28;0&#x29; 2538 4883<br />
+                        <span class="contact-info-phone-span">PHONE</span><br />Phone&#x3a; <?php echo $rowContact['contact_phone1'];?>, <br />Sales Dept. <?php echo $rowContact['contact_phone2'];?><br />Mobile&#x3a; <?php echo $rowContact['contact_phone3'];?>&nbsp;<br /> Fax&#x3a; <?php echo $rowContact['contact_phone4'];?><br />
                     </p>
                 </div>
                 <div class="contact-info-middle clearfix">
@@ -49,8 +88,8 @@
                         <i class="icon icon-home2 grd-color txt-60"></i>
                     </div>
                     <p class="contact-info-adr">
-                        <span class="contact-info-adr-txt">ADDRESS<br /></span>Private Nirvana Co.,Ltd.<br />8 Soi
-                        Yothinpattana 11 Yake 7, Klongchan, Bangkapi, Bangkok 10240, Thailand<br />
+                        <span class="contact-info-adr-txt">ADDRESS<br /></span><?php echo $rowContact['contact_name'];?><br />8 Soi
+                        <?php echo $rowContact['contact_address'];?><br />
                     </p>
                 </div>
                 <div class="contact-info-right clearfix">
@@ -59,7 +98,7 @@
                     </div>
                     <p class="contact-info-em">
                         <span class="contact-info-em-span">EMAIL</span><br />Email&#x3a;
-                        privatenirvana&#x40;private-nirvana.com<br />Website&#x3a; www.private-nirvana.com<br />
+                        <?php echo $rowContact['contact_email'];?><br />Website&#x3a; <?php echo $rowContact['contact_web'];?><br />
                     </p>
                 </div>
             </div>
@@ -70,7 +109,7 @@
                 voices, feedback, comments and suggestions. Do not hesitate to let us know.<br />
             </p>
 
-            <form name="submitform">
+            <form name="submitform" method="post" action="?action=sendContact">
 
                 <div class="contact-form-input clearfix">
 
@@ -120,7 +159,9 @@
                             onkeyup="checkform()" pattern="[0-9]{5}"
                             oninvalclass="setCustomValidity('Card name must contain at between 5 - 30 characters (aA-zZ)')"
                             onchange="try{setCustomValidity('')}catch(e){}">
-
+                            
+                            <p id="charRandom" class="contact-send-btn checked" style="margin-right: 0;margin-top: -51px;position: relative;height: 42px;padding-top: 10px;"></p>
+                            <input type="hidden" id="charChk" name="charChk" value="">
                     </div>
 
 

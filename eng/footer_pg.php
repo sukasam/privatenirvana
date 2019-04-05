@@ -1,4 +1,6 @@
-
+<?php
+    include_once('../include/app_top.php');
+?>
 <div class="pn-footer-part clearfix">
             <div class="pn-footer-sect clearfix">
                 <div class="pn-footer-info clearfix">
@@ -19,20 +21,20 @@
                     </div>
                     <div class="pn-address clearfix">
                         <p class="pn-address-txt">
-                        Private Nirvana Co.,Ltd.<br />
+                        <?php echo $rowContact['contact_name'];?><br />
                         </p>
                         <p class="pn-address-details">
-                        8 Soi Yothinpattana 11 Yake 7, Klongchan, Bangkapi, Bangkok 10240.<br /><br />Phone&#x3a; &#x2b;66 &#x28;0&#x29; 2538 4884<br />Sales Dept&#x3a; &#x2b;66 &#x28;0&#x29; 2538 3883<br />Mobile&#x3a; &#x2b;66 &#x28;0&#x29;8 1984 7554<br />Fax&#x3a; &#x2b;66 &#x28;0&#x29; 2538 4883<br /><br /><span id="textspan1">privatenirvana&#x40;private-nirvana.com</span><br />
+                        <?php echo $rowContact['contact_address'];?><br /><br />Phone&#x3a; <?php echo $rowContact['contact_phone1'];?><br />Sales Dept&#x3a; <?php echo $rowContact['contact_phone2'];?><br />Mobile&#x3a; <?php echo $rowContact['contact_phone3'];?><br />Fax&#x3a; <?php echo $rowContact['contact_phone4'];?><br /><br /><span id="textspan1"><?php echo $rowContact['contact_email'];?></span><br />
                         </p>
                         <div class="pn-social-sect clearfix">
                             <div class="pn-social-group clearfix">
-                                <img class="pn-social-ico1 image" src="img/phone_ico.png" />
-                                <a href="https://web.facebook.com/privatenirvana/" target="_blank"><img class="pn-social-ico2 image" src="img/fb_ico.png" /></a>
-                                <a href="https://www.instagram.com/privatenirvana" target="_blank"><img class="pn-social-ico3 image" src="img/ig_ico.png" /></a>
-                                <img class="pn-social-ico4 image" src="img/pin_ico.png" />
+                            <a href="tel:<?php echo $rowContact['contact_phone1'];?>"><img class="pn-social-ico1 image" src="img/phone_ico.png" /></a>
+                                <a href="<?php echo $rowContact['facebook'];?>" target="_blank"><img class="pn-social-ico2 image" src="img/fb_ico.png" /></a>
+                                <a href="<?php echo $rowContact['instagram'];?>" target="_blank"><img class="pn-social-ico3 image" src="img/ig_ico.png" /></a>
+                                <a href="<?php echo $rowContact['googlemap'];?>" target="_blank"><img class="pn-social-ico4 image" src="img/pin_ico.png" /></a>
                             </div>
                             <p class="pn-copyright-txt">
-                            &copy; 2018 Private Nirvana. All Right Reserved.<br />
+                            &copy; <?php echo date('Y');?> Private Nirvana. All Right Reserved.<br />
                             </p>
                         </div>
                     </div>

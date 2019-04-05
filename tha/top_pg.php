@@ -1,3 +1,24 @@
+<?php
+include_once("../include/app_top.php");
+if(isset($_GET['subscribeemail']) && $_GET['subscribeemail'] != ""){
+
+    $quSubscribe = mysqli_query($conn,"SELECT * FROM s_subscribe WHERE email ='".$_GET['subscribeemail']."'");
+    $rowcount=mysqli_num_rows($quSubscribe);
+
+    if($rowcount == 0){
+        mysqli_query($conn,"INSERT INTO `s_subscribe` (`id`, `email`, `date`, `time`) VALUES (NULL, '".$_GET['subscribeemail']."', '".date("Y-m-d")."', '".date("H:i:s")."');");
+    }
+
+    echo "<script>alert('".TH_THANKS_SUBSCIBE."');window.location='".curPageURLWithoutParam()."'</script>;";
+    
+    mysqli_close($conn);
+}
+
+if(isset($_GET['changelang']) && $_GET['changelang'] != ""){
+    $urlReplace = str_replace("/tha","/eng",curPageURLWithoutParam());
+    header("Location:".$urlReplace );
+}
+?>
 <link rel="stylesheet" href="css/jquery.fancybox.min.css" />
 <script src="js/jquery-1.10.1.min.js"></script>
 <script src="js/jquery.fancybox.min.js"></script>
@@ -20,7 +41,7 @@ function closeNav() {
         </div>
         <div class="pn-menu-sect clearfix">
             <div class="pn-lang clearfix">
-                <img class="pn-lang1 image" src="img/th_flag.png" />
+                <a href="?changelang=eng"><img class="pn-lang1 image" src="img/en_flag.png" /></a>
             </div>
 
 

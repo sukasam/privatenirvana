@@ -1,3 +1,39 @@
+<?php
+    include_once('../include/app_top.php');
+    if(isset($_GET['action']) && $_GET['action'] === 'sendContact'){
+
+        if($_POST['subcode'] == $_POST['charChk']){
+            $subname = $_POST['subname'];
+            $subemail = $_POST['subemail'];
+            $subsubject = $_POST['subsubject'];
+            $submessage = $_POST['submessage'];
+     
+             $strTo = EMAIL_CONTACT;
+             $strSubject = "=?UTF-8?B?".base64_encode($subsubject)."?=";
+             $strHeader .= "MIME-Version: 1.0' . \r\n";
+             $strHeader .= "Content-type: text/html; charset=utf-8\r\n"; 
+             $strHeader .= "From: ".$subname."<".$subemail.">\r\nReply-To: ".$subemail;
+             $strMessage = "<h3>".TH_CONTACT_US."</h3>";
+             $strMessage += "ชื่อ: ".$subname."<br/>";
+             $strMessage += "อีเมล์: ".$subname."<br/>";
+             $strMessage += "หัวข้อเรื่อง: ".$subname."<br/>";
+             $strMessage += "ข้อความ: ".nl2br($submessage)."<br/>";
+     
+             $flgSend = @mail($strTo,$strSubject,$strMessage,$strHeader);  // @ = No Show Error //
+             // if($flgSend){
+             //     echo "Email Sending.";
+             // }
+             // else{
+             //     echo "Email Can Not Send.";
+             // }
+     
+             echo "<script>alert('".TH_THANK_CONTACT_US."');window.location='".curPageURLWithoutParam()."'</script>;";
+        }else{
+            echo "<script>alert('".TH_SECU_CODE_ERRORS."');window.location='".curPageURLWithoutParam()."'</script>;";
+        }
+
+    }
+?>
 <!DOCTYPE html>
 <html>
 
@@ -10,10 +46,16 @@
     <link rel="stylesheet" href="contact.css">
     <script src="js/form.js"></script>
 
-
+    <script>
+    function secCode(){
+        var randomSec = Math.floor(10000 + Math.random() * 99999);
+        document.getElementById("charChk").value = randomSec;
+        document.getElementById("charRandom").innerHTML = randomSec;
+    }
+    </script>
 </head>
 
-<body>
+<body onload="secCode();">
 
     <div class="primaryContainer" class="primaryContainer clearfix">
 
@@ -39,9 +81,7 @@
                         <i class="icon icon-phone grd-color txt-56"></i>
                     </div>
                     <p class="contact-info-phone">
-                        <span class="contact-info-phone-span">ติดต่อ</span><br />โทร&#x3a; &#x2b;66 &#x28;0&#x29; 2538
-                        4884, <br />ฝ่ายขาย &#x2b;66 &#x28;0&#x29; 2538 3883<br />มือถือ&#x3a; &#x2b;66
-                        &#x28;0&#x29;8 1984 7554&nbsp;<br /> แฟ็กซ์&#x3a; &#x2b;66 &#x28;0&#x29; 2538 4883<br />
+                        <span class="contact-info-phone-span">ติดต่อ</span><br />โทร&#x3a; <?php echo $rowContact['contact_phone1'];?>, <br />ฝ่ายขาย <?php echo $rowContact['contact_phone2'];?><br />มือถือ&#x3a; <?php echo $rowContact['contact_phone3'];?>&nbsp;<br /> แฟ็กซ์&#x3a; <?php echo $rowContact['contact_phone4'];?><br />
                     </p>
                 </div>
                 <div class="contact-info-middle clearfix">
@@ -49,8 +89,8 @@
                         <i class="icon icon-home2 grd-color txt-60"></i>
                     </div>
                     <p class="contact-info-adr">
-                        <span class="contact-info-adr-txt">ที่อยู่<br /></span>บริษัท ไพรเวท เนอวานา จำกัด<br />เลขที่ 8
-                        ซอยโยธินพัฒนา 11 แยก 7 แขวงคลองจั่น เขตบางกะปิ กรุงเทพฯ 10240<br />
+                        <span class="contact-info-adr-txt">ที่อยู่<br /></span><?php echo $rowContact['contact_name_native'];?><br />เลขที่ 8
+                        <?php echo $rowContact['contact_address_native'];?><br />
                     </p>
                 </div>
                 <div class="contact-info-right clearfix">
@@ -59,7 +99,7 @@
                     </div>
                     <p class="contact-info-em">
                         <span class="contact-info-em-span">อีเมล์</span><br />อีเมล์&#x3a;
-                        privatenirvana&#x40;private-nirvana.com<br />เว็บไซต์&#x3a; www.private-nirvana.com<br />
+                        <?php echo $rowContact['contact_email'];?><br />เว็บไซต์&#x3a; <?php echo $rowContact['contact_web'];?><br />
                     </p>
                 </div>
             </div>
@@ -70,7 +110,7 @@
                 หากสนใจโครงการของเรา หรือมีข้อติชมโปรดส่งข้อความเสนอแนะเราได้ที่นี่<br />
             </p>
 
-            <form name="submitform">
+            <form name="submitform" method="post" action="?action=sendContact">
 
                 <div class="contact-form-input clearfix">
 
@@ -120,6 +160,9 @@
                             onkeyup="checkform()" pattern="[0-9]{5}"
                             oninvalclass="setCustomValidity('Card name must contain at between 5 - 30 characters (aA-zZ)')"
                             onchange="try{setCustomValidity('')}catch(e){}">
+
+                            <p id="charRandom" class="contact-send-btn checked" style="margin-right: 0;margin-top: -51px;position: relative;height: 42px;padding-top: 10px;"></p>
+                            <input type="hidden" id="charChk" name="charChk" value="">
 
                     </div>
 

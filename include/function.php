@@ -1281,4 +1281,17 @@ function current_page($lang){
 	echo FILE_LANG."?lang=".$lang."&page=".curPageURL();
 }
 
+function curPageURLWithoutParam(){
+	// $uri = $_SERVER['REQUEST_URI'];
+	// echo $uri; // Outputs: URI
+	
+	$protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+	$uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
+	$url = $protocol . $_SERVER['HTTP_HOST'] . $uri_parts[0];
+	return $url; // Outputs: Full URL
+	
+	// $query = $_SERVER['QUERY_STRING'];
+	// echo $query; // Outputs: Query String
+}
+
 ?>

@@ -1,7 +1,8 @@
+<?php
+    include_once('../include/app_top.php');
+?>
 <!DOCTYPE html>
 <html>
-
-
 <head>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="index.css">
