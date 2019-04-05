@@ -1,7 +1,8 @@
+<?php
+include_once("../include/app_top.php");
+?>
 <!DOCTYPE html>
 <html>
-
-
 <head>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="index.css">
@@ -45,23 +46,38 @@
                 </div>
 
                 <div class="news-content-info clearfix">
+                    <?php
+                    $quNews = mysqli_query($conn,"SELECT * FROM s_news WHERE status = 0 ORDER BY sorts,news_id DESC");
+                    $numNews = mysqli_num_rows($quNews);
+                    ?>
                     <p class="news-content-title">
-                        <span class="textspan">Latest Update</span><br /><span class="textspan1">1 items</span>
+                        <span class="textspan">Latest Update</span><br /><span class="textspan1"><?php echo $numNews;?> items</span>
                     </p>
+                    <?php
+                    while($rowNews = mysqli_fetch_array($quNews,MYSQLI_ASSOC)){
 
-<!-- News -->
-                    <a href="pr_news_details.php">
-                    <div class="news-content-list clearfix">
-                        <div class="news-list-pic clearfix">
-                            <img class="news-list-img image" src="prnews/news_cover_01.jpg" />
+                        $originalDate = strtotime($rowNews['create_date']);
+                        $newDate = date("M d, Y", $originalDate);
+
+                        ?>
+                        <!-- News -->
+                        <a href="pr_news_details.php?news_id=<?php echo $rowNews['news_id'];?>">
+                        <div class="news-content-list clearfix">
+                            <div class="news-list-pic clearfix">
+                                <img class="news-list-img image" src="prnews/news_cover_01.jpg" />
+                            </div>
+                            <p class="news-list-content">
+                                <span class="news-list-title"><?php echo stripslashes($rowNews['news_name']);?></span><br />
+                                <span class="news-list-date"><?php echo $newDate;?></span><br />
+                            </p>
                         </div>
-                        <p class="news-list-content">
-                            <span class="news-list-title">บรรยากาศเปิดชมบ้าน Private Nirvana Through เอกมัย - รามอินทรา</span><br />
-                            <span class="news-list-date">March 17, 2019</span><br />
-                        </p>
-                    </div>
-                    </a>
-<!-- News -->
+                        </a>
+                        <!-- News -->
+                    <?php
+                    }
+                    ?>
+
+
 
 
 <!-- News -->

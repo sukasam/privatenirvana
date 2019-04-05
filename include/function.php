@@ -1294,4 +1294,9 @@ function curPageURLWithoutParam(){
 	// echo $query; // Outputs: Query String
 }
 
+function get_news_name($conn,$id){
+	$row_video_album = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM s_news WHERE news_id = '".$id."'"));
+	return $row_video_album['album_name'];
+}
+
 ?>

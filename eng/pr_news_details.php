@@ -1,7 +1,14 @@
+<?php
+include_once("../include/app_top.php");
+if(!isset($_GET['news_id']) || $_GET['news_id'] == ""){
+    header("Location:pr_news.php");
+}
+$rowNews = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM s_news WHERE news_id = ".$_GET['news_id']),MYSQLI_ASSOC);
+$originalDate = strtotime($rowNews['create_date']);
+$newDate = date("M d, Y", $originalDate);
+?>
 <!DOCTYPE html>
 <html>
-
-
 <head>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="index.css">
@@ -45,79 +52,31 @@
 
                 <div class="news-content-info clearfix">
                     <div class="news-main-title">
-                        <span class="prnews_title">บรรยากาศ เปิดชมบ้าน Private Nirvana Through เอกมัย -
-                            รามอินทรา</span><br />
-                        <span class="textspan1">March 17, 2019</span>
+                        <span class="prnews_title"><?php echo stripslashes($rowNews['news_name']);?></span><br />
+                        <span class="textspan1"><?php echo $newDate;?></span>
                     </div>
 
 
                     <div class="news-main-content clearfix">
 
-                        <span class="news-contents-txt">ขอขอบคุณลูกค้าทุกท่านที่ให้ความสนใจและเลือกจองบ้าน Private
-                            Nirvana THROUGH เอกมัย - รามอินทรา เมื่อวัน ที่ 16 - 17 มีนาคม 2562 ที่ผ่านมา
-                            บรรยากาศภายในงานเต็มไปด้วยความอบอุ่นและเป็ นกันเอง พร้อมอิ่มอร่อยกับของว่างสไตล์
-                            Cocktail ที่มีบริการตลอดทั้งวัน<br /><br />
-                            Private Nirvana THROUGH เอกมัย - รามอินทรา บ้าน 3
-                            ชั้นที่มี Option ให้เลือกมากถึง 4 แบบ เริ่มต้น 10.8 ลบ.<br /><br />
-                            สอบถามข้อมูลเพิ่มเติม<br />
-                            โทร. 02 003 9888<br />
-                            www.privatenirvana.com</span><br />
+                        <div class="news-contents-txt"><?php echo stripslashes($rowNews['news_desc']);?></div><br />
                     </div>
 
 
                     <div class="prnews_image_title">News Images</div>
                     <div class="prnews_image_gallery clearfix">
 
-                        <div class="prnews_image_pics">
-                            <a data-fancybox="prnews001" data-caption="Private Nirvana Through เอกมัย - รามอินทรา" href="prnews/prnews01_01.jpg">
-                            <img src="prnews/prnews01_01.jpg" class="img_prnews_thumbs"></a>
-                        </div>
+                        <?php
+                        $quNewsG = mysqli_query($conn,"SELECT * FROM s_news_gallery WHERE news_id = ".$rowNews['news_id']." ORDER BY sorts,img_id DESC");
+                        $numNewsG = mysqli_num_rows($quNewsG);
 
+                        while($rowNewsG = mysqli_fetch_array($quNewsG,MYSQLI_ASSOC)){
+                        ?>
                         <div class="prnews_image_pics">
-                            <a data-fancybox="prnews001" data-caption="Private Nirvana Through เอกมัย - รามอินทรา" href="prnews/prnews01_02.jpg">
-                            <img src="prnews/prnews01_02.jpg" class="img_prnews_thumbs"></a>
+                            <a data-fancybox="prnews001" data-caption="<?php echo stripslashes($rowNews['news_name']);?>" href="../upload/news/<?php echo $rowNews['news_id'];?>/<?php echo $rowNewsG['title_name'];?>">
+                            <img src="../upload/news/<?php echo $rowNews['news_id'];?>/<?php echo $rowNewsG['title_name'];?>" class="img_prnews_thumbs"></a>
                         </div>
-
-                        <div class="prnews_image_pics">
-                            <a data-fancybox="prnews001" data-caption="Private Nirvana Through เอกมัย - รามอินทรา" href="prnews/prnews01_03.jpg">
-                            <img src="prnews/prnews01_03.jpg" class="img_prnews_thumbs"></a>
-                        </div>
-
-                        <div class="prnews_image_pics">
-                            <a data-fancybox="prnews001" data-caption="Private Nirvana Through เอกมัย - รามอินทรา" href="prnews/prnews01_04.jpg">
-                            <img src="prnews/prnews01_04.jpg" class="img_prnews_thumbs"></a>
-                        </div>
-
-                        <div class="prnews_image_pics">
-                            <a data-fancybox="prnews001" data-caption="Private Nirvana Through เอกมัย - รามอินทรา" href="prnews/prnews01_05.jpg">
-                            <img src="prnews/prnews01_05.jpg" class="img_prnews_thumbs"></a>
-                        </div>
-
-                        <div class="prnews_image_pics">
-                            <a data-fancybox="prnews001" data-caption="Private Nirvana Through เอกมัย - รามอินทรา" href="prnews/prnews01_06.jpg">
-                            <img src="prnews/prnews01_06.jpg" class="img_prnews_thumbs"></a>
-                        </div>
-
-                        <div class="prnews_image_pics">
-                            <a data-fancybox="prnews001" data-caption="Private Nirvana Through เอกมัย - รามอินทรา" href="prnews/prnews01_07.jpg">
-                            <img src="prnews/prnews01_07.jpg" class="img_prnews_thumbs"></a>
-                        </div>
-
-                        <div class="prnews_image_pics">
-                            <a data-fancybox="prnews001" data-caption="Private Nirvana Through เอกมัย - รามอินทรา" href="prnews/prnews01_08.jpg">
-                            <img src="prnews/prnews01_08.jpg" class="img_prnews_thumbs"></a>
-                        </div>
-
-                        <div class="prnews_image_pics">
-                            <a data-fancybox="prnews001" data-caption="Private Nirvana Through เอกมัย - รามอินทรา" href="prnews/prnews01_09.jpg">
-                            <img src="prnews/prnews01_09.jpg" class="img_prnews_thumbs"></a>
-                        </div>
-
-                        <div class="prnews_image_pics">
-                            <a data-fancybox="prnews001" data-caption="Private Nirvana Through เอกมัย - รามอินทรา" href="prnews/prnews01_10.jpg">
-                            <img src="prnews/prnews01_10.jpg" class="img_prnews_thumbs"></a>
-                        </div>
-
+                        <?php }?>
                     </div>
 
 
