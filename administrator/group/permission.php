@@ -13,7 +13,7 @@ error_reporting(~E_NOTICE);;
 			header ("location:index.php?" . $param); 
 		}
 
-	//if ($_REQUEST[mode] <> "") { 
+	//if ($_REQUEST['mode'] <> "") { 
 		$param = "";
 		$a_not_exists = array();
 		$param = get_param($a_param,$a_not_exists);
@@ -210,7 +210,7 @@ function confirmDelete(delUrl,text) {
 			$a_not_exists = array();
 			post_param($a_param,$a_not_exists); 
 			?>
-      <input name="mode" type="hidden" id="mode" value="<?php  echo $_REQUEST[mode];?>">
+      <input name="mode" type="hidden" id="mode" value="<?php  echo $_REQUEST['mode'];?>">
       <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php  echo $PK_field;?>" value="<?php  echo $_REQUEST[$PK_field];?>">
     </div>
   </form>

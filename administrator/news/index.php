@@ -107,7 +107,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 
 <UL class=shortcut-buttons-set>
   <LI><A class=shortcut-button href="../news/update.php?mode=add<?php  if ($param <> "") echo "&".$param; ?><?php  if(isset($_GET['cat_id'])){echo '&cat_id='.$_GET['cat_id'];}?>"><SPAN><IMG  alt=icon src="../images/pencil_48.png"><BR>
-    Add Albums</SPAN></A></LI>
+    Add News</SPAN></A></LI>
     <?php  
 	if ($FR_module <> "") { 
 	$param2 = get_return_param();
