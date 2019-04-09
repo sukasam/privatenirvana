@@ -589,7 +589,7 @@ function Show_Sort ($orderby, $cn,  $field_select, $sortby,$page) {
 	if ($sortby <> "") $param .= "&sortby=$sortby";
 	if ($keyword <> "") $param .= "&keyword=$keyword";
 
-	if ($page <> "") $param .= "&page=$_GET[page]";
+	if ($page <> "") $param .= "&page=$_GET['page']";
 	$link_1 = "<a href ='" . $_SERVER['SCRIPT_NAME'] ."?" . $param ."'>";
 	$url =  $link_1 . $cn . "</a>" ;
 	if ($sortby <> "") $url .= $img;

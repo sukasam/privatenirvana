@@ -1,5 +1,6 @@
 <?php  
-error_reporting(0);	
+//error_reporting(0)
+error_reporting(~E_NOTICE);;	
 include ("../../include/config.php"); 
 include ("../../include/connect.php"); 
 include ("../../include/function.php"); 

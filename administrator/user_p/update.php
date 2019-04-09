@@ -1,5 +1,6 @@
 <?php 
-error_reporting(0);	
+//error_reporting(0)
+error_reporting(~E_NOTICE);;	
 	include ("../../include/config.php");
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
@@ -23,7 +24,7 @@ error_reporting(0);
 		}
 	}
 	
-	if($_GET[action] == "delete"){
+	if($_GET['action'] == "delete"){
 		$sql = "delete from $tbl_name where $PK_field = '$_GET[$PK_field]'";
 		mysqli_query($conn,$sql);
 	}
@@ -145,7 +146,7 @@ function confirmDelete(delUrl,text) {
 ?>
               <tr >
                 <td height="26" class="name"><?php 
-					  	if($_GET[action] == "Edit"){
+					  	if($_GET['action'] == "Edit"){
 							$sql = "select * from s_user_p  where $PK_field = '$_GET[$PK_field]' ";
 							$query = mysqli_query($conn,$sql);
 							$rec = mysqli_fetch_array($query);
@@ -180,7 +181,7 @@ function confirmDelete(delUrl,text) {
                     <input name="delete_p" type="checkbox" id="delete_p" value="1" <?php  if($delete_p == "1") echo "checked"; ?>>
                 </div></td>
                 <td colspan="2"><?php 
-							if($_GET[action] <> "Edit") $option_value = "Add";
+							if($_GET['action'] <> "Edit") $option_value = "Add";
 							else $option_value = "Edit";
 						?>
                     <div align="left">

@@ -1,5 +1,6 @@
 <?php 
-	error_reporting(0);	
+	//error_reporting(0)
+error_reporting(~E_NOTICE);;	
 	$PK_field = "menucate_id";
 	//$FR_field = "";
 	$check_module = "menu";

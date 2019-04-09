@@ -1,5 +1,6 @@
 <?php
-    error_reporting(0);
+    //error_reporting(0)
+error_reporting(~E_NOTICE);;
     include_once('connect.php');
     include_once('function.php');
     date_default_timezone_set("Asia/Bangkok");

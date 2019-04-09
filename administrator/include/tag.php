@@ -2,7 +2,7 @@
 if($_POST[seo]=="Submit"){
 	$sql="update s_module set tag_title='$_POST[tag_title]' ,tag_meta='$_POST[tag_meta]' where module_name='".$check_module."' ";
 	mysqli_query($conn,$sql);
-	//header ("location:index.php?page=$_GET[page]");
+	//header ("location:index.php?page=$_GET['page']");
 }
 
 $sql = "select * from s_module where module_name='".$check_module."' ";

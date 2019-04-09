@@ -788,7 +788,7 @@ function Check_Permission ($conn,$check_module,$user_id,$action)
 	$sql = "select * from s_user where user_id = '$user_id'";
 	$query = mysqli_query ($conn,$sql) or die ("3");
 	if ($rec = mysqli_fetch_array ($query)) {
-		if ($rec["admin_flag"] == '1' or $_SESSION[s_group_all] == "ALL") {
+		if ($rec["admin_flag"] == '1' or $_SESSION['s_group_all'] == "ALL") {
 				
 		}
 		else
@@ -981,7 +981,7 @@ function record_member($page_name){
 	}
 }
 function check_azAZ09($text){
-	if(ereg("[^0-9A-Za-z]",$text)) return false;
+	if(preg_match("/[^0-9A-Za-z]/",$text)) return false;
 	else return true;
 }		
 function get_param($a_param,$a_not_exists){
@@ -994,7 +994,7 @@ function get_param($a_param,$a_not_exists){
 	}
 	if(count($_REQUEST) > 0){
 		foreach($_REQUEST as $key => $value){ 
-			if( ereg("pre_",$key) && ($value <> "") ) 
+			if( preg_match("/pre_/",$key) && ($value <> "") ) 
 				$param2 .= "&".$key."=".$value;
 		}
 	}
@@ -1011,7 +1011,7 @@ function post_param($a_param,$a_not_exists){
 	}
 	if(count($_REQUEST) > 0) {
 		foreach($_REQUEST as $key => $value){
-			if( ereg("pre_",$key) && ($value <> "") )
+			if( preg_match("/pre_/",$key) && ($value <> "") )
 					 echo "<input type=\"hidden\" name=\"$key\" value=\"$value\">";
 		}// end foreach
 	}
@@ -1031,7 +1031,7 @@ function get_return_param(){
 	$param = ""; 
 	if(count($_REQUEST) > 0) {
 		foreach($_REQUEST as $key => $value){
-			if( ereg("pre_",$key) && ($value <> "") )
+			if( preg_match("/pre_/",$key) && ($value <> "") )
 				$param .= "&".str_replace("pre_","",$key)."=".$value;
 		}
 		$param = substr($param,1);
@@ -1069,7 +1069,7 @@ function check_username($name){
 }
 
 function show_menu($menu_id,$menu_name){
-	if(ereg(",".$menu_id.",",$_SESSION[s_menu_id].",")){
+	if(preg_match("/,".$menu_id.",",$_SESSION[s_menu_id].",/")){
 		if($menu_id == $_SESSION[s_now_menu])
 			echo "<font color=\"#FF0000\">$menu_name</font>"; 
 		else

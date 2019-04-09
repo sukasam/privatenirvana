@@ -1,7 +1,8 @@
 <?php 
 		$field = $value = "";
 		reset($fieldlist);
-			 while(list(,$s_key) = each($fieldlist))
+			 //while(list(,$s_key) = each($fieldlist))
+			 foreach($fieldlist as $s_key) 
 			 {
 				  $field .= ", " . $s_key;
 				  $value .= ", '" . $_POST[$s_key] . "'";

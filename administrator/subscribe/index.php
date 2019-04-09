@@ -1,14 +1,15 @@
 <?php 
-error_reporting(0);	
+//error_reporting(0)
+error_reporting(~E_NOTICE);;	
 	include ("../../include/config.php");
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
 	include ("config.php");
 	Check_Permission ($conn,$check_module,$_SESSION['login_id'],"read");
-	if ($_GET[page] == ""){$_REQUEST[page] = 1;	}
+	if ($_GET['page'] == ""){$_REQUEST['page'] = 1;	}
 	$param = get_param($a_param,$a_not_exists);
 	
-	if($_GET[action] == "delete"){
+	if($_GET['action'] == "delete"){
 		$code = Check_Permission ($conn,$check_module,$_SESSION["login_id"],"delete");		
 		if ($code == "1") {
 			$sql = "delete from $tbl_name  where $PK_field = '$_GET[$PK_field]'";
@@ -121,12 +122,12 @@ function check_select(frm){
 				  $sql = " select *,$tbl_name.create_date as c_date from $tbl_name  where 1 ";
 					if ($_GET[$PK_field] <> "") $sql .= " and ($PK_field  = '" . $_GET[$PK_field] . " ' ) ";					
 					if ($_GET[$FR_field] <> "") $sql .= " and ($FR_field  = '" . $_GET[$FR_field] . " ' ) ";					
- 					if ($_GET[keyword] <> "") { 
-						$sql .= "and ( email like '%$_GET[keyword]%' ";
+ 					if ($_GET['keyword'] <> "") { 
+						$sql .= "and ( email like '%".$_GET['keyword']."%' ";
 						if (count ($search_key) > 0) { 
 							$search_text = " and ( " ;
 							foreach ($search_key as $key=>$value) { 
-									$subtext .= "or " . $value  . " like '%" . $_GET[keyword] . "%'";
+									$subtext .= "or " . $value  . " like '%" . $_GET['keyword'] . "%'";
 							}	
 						}
 						$sql .=  $subtext . " ) ";
@@ -136,8 +137,8 @@ function check_select(frm){
 					include ("../include/page_init.php");
 					//echo $sql;
 					$query = mysqli_query ($conn,$sql);
-					if($_GET[page] == "") $_GET[page] = 1;
-					$counter = ($_GET[page]-1)*$pagesize;
+					if($_GET['page'] == "") $_GET['page'] = 1;
+					$counter = ($_GET['page']-1)*$pagesize;
 					
 					while ($rec = mysqli_fetch_array ($query)) { 
 					$counter++;

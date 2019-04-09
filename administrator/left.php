@@ -9,7 +9,8 @@ class : li a:current is a now active
 <DIV id=sidebar>
 
 <?php
-	error_reporting(0);	
+	//error_reporting(0)
+error_reporting(~E_NOTICE);;	
   //$pageURL = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
 //	$pp = strrpos($_SERVER["SCRIPT_NAME"],"/");
  //   $pageURL = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/"));
@@ -95,19 +96,19 @@ class : li a:current is a now active
       
       <LI></LI>
       
-      <LI><A class='nav-top-item <?php  if($_GET[mid]==9999){ echo "current";}?>'  href="#">User Management</A>
+      <LI><A class='nav-top-item <?php  if($_GET['mid']==9999){ echo "current";}?>'  href="#">User Management</A>
           <UL>
-            <LI><A   href="../../administrator/user/?smid=3&mid=9999" onclick="setCurrent(this)" <?php  if($_GET[smid]==3){echo "class='current'";}?>>User / permission</A></LI>
-            <LI><A  href="../../administrator/group/?smid=4&mid=9999" <?php  if($_GET[smid]==4){echo "class='current'";}?>>User Group / permission</A></LI>   
+            <LI><A   href="../../administrator/user/?smid=3&mid=9999" onclick="setCurrent(this)" <?php  if($_GET['smid']==3){echo "class='current'";}?>>User / permission</A></LI>
+            <LI><A  href="../../administrator/group/?smid=4&mid=9999" <?php  if($_GET['smid']==4){echo "class='current'";}?>>User Group / permission</A></LI>   
           </UL>
       </LI>    
-      <LI><A class='nav-top-item <?php  if($_GET[mid]==8888){ echo "current";}?>'  href="#">Setting</A>
+      <LI><A class='nav-top-item <?php  if($_GET['mid']==8888){ echo "current";}?>'  href="#">Setting</A>
        <UL>
        	<?php  if($_SESSION["login_id"]==1){?>
-         <LI><A  href="../../administrator/menu/?smid=5&mid=8888" <?php  if($_GET[smid]==5){echo "class='current'";}?>>Menu</A></LI>  
-         <LI><A  href="../../administrator/module/?smid=6&mid=8888" <?php  if($_GET[smid]==6){echo "class='current'";}?>>Module</A></LI> 
+         <LI><A  href="../../administrator/menu/?smid=5&mid=8888" <?php  if($_GET['smid']==5){echo "class='current'";}?>>Menu</A></LI>  
+         <LI><A  href="../../administrator/module/?smid=6&mid=8888" <?php  if($_GET['smid']==6){echo "class='current'";}?>>Module</A></LI> 
          <?php  }?>
-         <!--<LI><A  href="../../administrator/footer/?smid=7&mid=2" <?php  if($_GET[smid]==7){echo "class='current'";}?>>Webpage Footer</A></LI>       -->
+         <!--<LI><A  href="../../administrator/footer/?smid=7&mid=2" <?php  if($_GET['smid']==7){echo "class='current'";}?>>Webpage Footer</A></LI>       -->
           </UL>
       </LI>
       

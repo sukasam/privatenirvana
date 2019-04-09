@@ -1,5 +1,6 @@
 <?php 
-error_reporting(0);	
+//error_reporting(0)
+error_reporting(~E_NOTICE);;	
 	include ("../../include/config.php");
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
@@ -7,13 +8,13 @@ error_reporting(0);
 
 	Check_Permission ($conn,$check_module,$_SESSION['login_id'],"read");
 
-	if ($_GET[page] == ""){$_REQUEST[page] = 1;	}
+	if ($_GET['page'] == ""){$_REQUEST['page'] = 1;	}
 
 	$param = get_param($a_param,$a_not_exists);
 
 	
 
-	if($_GET[action] == "delete"){
+	if($_GET['action'] == "delete"){
 
 		//$code = Check_Permission ($conn,$check_module,$_SESSION["login_id"],"delete");
 		//if ($code == "1") {
@@ -284,9 +285,9 @@ function check_select(frm){
 
 					if ($_GET[$FR_field] <> "") $sql .= " and ($FR_field  = '" . $_GET[$FR_field] . " ' ) ";					
 
- 					if ($_GET[keyword] <> "") { 
+ 					if ($_GET['keyword'] <> "") { 
 
-						$sql .= "and ( " .  $PK_field  . " like '%$_GET[keyword]%' ";
+						$sql .= "and ( " .  $PK_field  . " like '%".$_GET['keyword']."%' ";
 
 						if (count ($search_key) > 0) { 
 
@@ -294,7 +295,7 @@ function check_select(frm){
 
 							foreach ($search_key as $key=>$value) { 
 
-									$subtext .= "or " . $value  . " like '%" . $_GET[keyword] . "%'";
+									$subtext .= "or " . $value  . " like '%" . $_GET['keyword'] . "%'";
 
 							}	
 
@@ -314,9 +315,9 @@ function check_select(frm){
 
 					$query = mysqli_query ($conn,$sql);
 
-					if($_GET[page] == "") $_GET[page] = 1;
+					if($_GET['page'] == "") $_GET['page'] = 1;
 
-					$counter = ($_GET[page]-1)*$pagesize;
+					$counter = ($_GET['page']-1)*$pagesize;
 
 					
 

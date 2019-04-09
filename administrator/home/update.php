@@ -1,11 +1,14 @@
 <?php 
-  error_reporting(0);	
+  ////error_reporting(0)
+error_reporting(~E_NOTICE);;	
 	include ("../../include/config.php");
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
   include ("config.php");
 
-  print_r($_REQUEST);
+  //print_r($_REQUEST);
+
+  //echo $_POST['mode']."MKUNG";
 
 	if ($_POST['mode'] <> "") { 
 		$param = "";

@@ -1,5 +1,6 @@
 <?php 
-error_reporting(0);	
+//error_reporting(0)
+error_reporting(~E_NOTICE);;	
 	include ("../../include/config.php");
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
@@ -33,7 +34,7 @@ error_reporting(0);
 		}
 //	}
 	
-	if($_GET[action] == "delete"){
+	if($_GET['action'] == "delete"){
 		$sql = "delete from s_user_p where user_p_id = '$_GET[user_p_id]'";
 		mysqli_query($conn,$sql);
 		header ("location:?" . $param); 
@@ -153,7 +154,7 @@ function confirmDelete(delUrl,text) {
               <?php  } // end while?>
               <tr >
                 <td height="26" class="name"><?php 
-					  	if($_GET[action] == "Edit"){
+					  	if($_GET['action'] == "Edit"){
 							$sql = "select * from s_user_p  where user_p_id = '$_GET[user_p_id]'  ";
 							$query = mysqli_query($conn,$sql);
 							$rec = mysqli_fetch_array($query);
@@ -165,13 +166,13 @@ function confirmDelete(delUrl,text) {
 						}
 							
 							$sql = "select * from s_module ";
-							if($_GET[action] == "Edit")
+							if($_GET['action'] == "Edit")
 								$sql .= "where module_id = '$_GET[module_id]' ";
 							$sql .= "order by module_id desc";
 							$query = mysqli_query($conn,$sql);
 					  ?>
                     <select name="module_id">
-                      <?php  if($_GET[action] <> "Edit") { ?>
+                      <?php  if($_GET['action'] <> "Edit") { ?>
                       <option>Select One</option>
                       <?php  } 
 								while($rec = mysqli_fetch_array($query)){
@@ -193,7 +194,7 @@ function confirmDelete(delUrl,text) {
                     <input name="delete_p" type="checkbox" id="delete_p" value="1" <?php  if($delete_p == "1") echo "checked"; ?>>
                 </div></td>
                 <td colspan="2"><?php 
-							if($_GET[action] <> "Edit") $option_value = "Add";
+							if($_GET['action'] <> "Edit") $option_value = "Add";
 							else $option_value = "Edit";
 						?>
                     <div align="left">

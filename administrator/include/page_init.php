@@ -1,7 +1,7 @@
 <?php 
 	$query = mysqli_query($conn,$sql);
 	$all_row = mysqli_num_rows($query);
-// ######### ËÒ¨Ó¹Ç¹Ë¹éÒ·Ñé§ËÁ´ #########
+// ######### ï¿½Ò¨Ó¹Ç¹Ë¹ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ #########
 	if (isset($page)=="") {
 		$page = 1;
 	}
@@ -11,6 +11,6 @@
 		$pagecount = floor($all_row/$pagesize);	} else { $pagecount = floor($all_row/$pagesize)+1; 
 	}
 
-	$start = ($_REQUEST[page] -1)*$pagesize;
+	$start = ($_REQUEST['page'] -1)*$pagesize;
 	$sql = $sql . " limit $start, $pagesize";
 ?>

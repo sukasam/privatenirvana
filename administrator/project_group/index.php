@@ -1,14 +1,15 @@
 <?php 
+  error_reporting(~E_NOTICE);
 	include ("../../include/config.php");
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
 	include ("config.php");
 
 	Check_Permission ($conn,$check_module,$_SESSION['login_id'],"read");
-	if ($_GET[page] == ""){$_REQUEST[page] = 1;	}
+	if ($_GET['page'] == ""){$_REQUEST['page'] = 1;	}
 	$param = get_param($a_param,$a_not_exists);
 	//-------------------------------------------------------------------------------------
-	if($_REQUEST[action] == "delete"){
+	if($_REQUEST['action'] == "delete"){
 
 		$code = Check_Permission ($conn,$check_module,$_SESSION["login_id"],"delete");		
 		
@@ -21,11 +22,11 @@
 			header ("location:index.php?".$param); 
 	}
 	//-------------------------------------------------------------------------------------
-	 if ($_GET[b] <> "" and $_GET[s] <> "") { 
-		if ($_GET[s] == 0) $status = 1;
-		if ($_GET[s] == 1) $status = 0;
+	 if ($_GET['b'] <> "" and $_GET['s'] <> "") { 
+		if ($_GET['s'] == 0) $status = 1;
+		if ($_GET['s'] == 1) $status = 0;
 		Check_Permission ($conn,$check_module,$_SESSION['login_id'],"update");
-		$sql_status = "update $tbl_name set status = '$status' where $PK_field = '$_GET[b]'";
+		$sql_status = "update $tbl_name set status = '$status' where $PK_field = '".$_GET['b']."'";
 		mysqli_query ($conn,$sql_status);
 			
 		header ("location:index.php?mid=8"); 
@@ -153,12 +154,12 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 				   	$sql = " select *,$tbl_name.create_date as c_date from $tbl_name  where 1 ";
 					if ($_GET[$PK_field] <> "") $sql .= " and ($PK_field  = '" . $_GET[$PK_field] . " ' ) ";					
 					if ($_GET[$FR_field] <> "") $sql .= " and ($FR_field  = '" . $_GET[$FR_field] . " ' ) ";					
- 					if ($_GET[keyword] <> "") { 
-						$sql .= "and ( " .  $PK_field  . " like '%$_GET[keyword]%' ";
+ 					if ($_GET['keyword'] <> "") { 
+						$sql .= "and ( " .  $PK_field  . " like '%".$_GET['keyword']."%' ";
 						if (count ($search_key) > 0) { 
 							$search_text = " and ( " ;
 							foreach ($search_key as $key=>$value) { 
-									$subtext .= "or " . $value  . " like '%" . $_GET[keyword] . "%'";
+									$subtext .= "or " . $value  . " like '%" . $_GET['keyword'] . "%'";
 							}	
 						}
 						$sql .=  $subtext . " ) ";
@@ -169,8 +170,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 					include ("../include/page_init.php");
 					//echo $sql;
 					$query = mysqli_query ($conn,$sql);
-					if($_GET[page] == "") $_GET[page] = 1;
-					$counter = ($_GET[page]-1)*$pagesize;
+					if($_GET['page'] == "") $_GET['page'] = 1;
+					$counter = ($_GET['page']-1)*$pagesize;
 					
 					while ($rec = mysqli_fetch_array ($query)) { 
 					$counter++;
