@@ -1,3 +1,6 @@
+<?php
+include_once("../include/app_top.php");
+?>
 <!DOCTYPE html>
 <html>
 
@@ -31,38 +34,76 @@
 
                 <div class="news-content-nav clearfix">
 
-                    <div class="news-month-list">
-                        <div class="news-content-month">มีนาคม 2019</div>
-                    </div>
+                <?php 
+                        $quMenuNews = mysqli_query($conn,"SELECT * FROM `s_news` WHERE `status` = 0
+                        GROUP BY `news_month`
+                        ORDER BY `create_date` DESC");
 
-                    <div class="news-month-select">
+                        while($rowMenuNews = mysqli_fetch_array($quMenuNews,MYSQLI_ASSOC)){
+
+                            $originalDateNews = strtotime($rowMenuNews['create_date']);
+                            $newDateNews = date("M Y", $originalDateNews);
+                            $newDateNewsS = date("Y-m", $originalDateNews);
+
+                            ?>
+                            <a href="?newsMonth=<?php echo $newDateNewsS;?>"><div class="news-month-list">
+                                <div class="news-content-month"><?php echo dateThai2($newDateNews);?></div>
+                            </div></a>
+                            <?php
+                        }
+
+                    ?>
+
+                    <!-- <div class="news-month-select">
                         <select>
-                            <option value="February2019">มีนาคม 2019</option>
+                            <option value="February2019">March 2019</option>
 
                         </select>
-                    </div>
+                    </div> -->
 
                 </div>
 
                 <div class="news-content-info clearfix">
+
+                <?php
+                    $condition = "";
+                    $conLimit = "";
+                    if(isset($_GET['newsMonth']) && $_GET['newsMonth'] != ""){
+                        $condition = " AND `create_date` LIKE '".$_GET['newsMonth']."%'";
+                    }else{
+                        $conLimit = " LIMIT 0, 10";
+                    }
+                    $quNews = mysqli_query($conn,"SELECT * FROM s_news WHERE status = 0 ".$condition." ORDER BY sorts,news_id DESC".$conLimit);
+                    $numNews = mysqli_num_rows($quNews);
+                    ?>
+
                     <p class="news-content-title">
-                        <span class="textspan">ข่าวล่าสุด</span><br /><span class="textspan1">1 รายการ</span>
+                        <span class="textspan">ข่าวล่าสุด</span><br /><span class="textspan1"><?php echo $numNews;?> รายการ</span>
                     </p>
 
-<!-- News -->
-                    <a href="pr_news_details.php">
-                    <div class="news-content-list clearfix">
-                        <div class="news-list-pic clearfix">
-                            <img class="news-list-img image" src="prnews/news_cover_01.jpg" />
-                        </div>
-                        <p class="news-list-content">
-                            <span class="news-list-title">บรรยากาศเปิดชมบ้าน Private Nirvana Through เอกมัย - รามอินทรา</span><br />
-                            <span class="news-list-date">March 17, 2019</span><br />
-                        </p>
-                    </div>
-                    </a>
-<!-- News -->
+                    <?php
+                    while($rowNews = mysqli_fetch_array($quNews,MYSQLI_ASSOC)){
 
+                        $originalDate = strtotime($rowNews['create_date']);
+                        $newDate = date("M d, Y", $originalDate);
+
+                        ?>
+                        <!-- News -->
+                        <a href="pr_news_details.php?news_id=<?php echo $rowNews['news_id'];?>">
+                        <div class="news-content-list clearfix">
+                            <div class="news-list-pic clearfix">
+                                <img class="news-list-img image" src="prnews/news_cover_01.jpg" />
+                            </div>
+                            <p class="news-list-content">
+                                <span class="news-list-title"><?php echo stripslashes($rowNews['news_name_native']);?></span><br />
+                                <span class="news-list-date"><?php echo dateThai1($newDate);?></span><br />
+                            </p>
+                        </div>
+                        </a>
+                        <!-- News -->
+                    <?php
+                    }
+                    ?>
 
 <!-- News -->
                     <div class="news-content-list clearfix" style="display:none;">

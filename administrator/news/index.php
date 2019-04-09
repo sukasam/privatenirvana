@@ -175,8 +175,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         </TFOOT>
       <TBODY>
         <?php  
-					if($orderby=="") $orderby = $tbl_name.".sorts";
-					if ($sortby =="") $sortby ="ASC";
+					if($orderby=="") $orderby = $tbl_name.".sorts,".$PK_field;
+					if ($sortby =="") $sortby ="DESC";
 					
 				   	$sql = " select *,$tbl_name.create_date as c_date from $tbl_name  where 1 ";
 					if ($_GET[$PK_field] <> "") $sql .= " and ($PK_field  = '" . $_GET[$PK_field] . " ' ) ";					

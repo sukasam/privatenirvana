@@ -1,8 +1,10 @@
 <?php
     include_once('../include/app_top.php');
+    $rowHome = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM s_home WHERE id=1"),MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="index.css">
@@ -17,83 +19,84 @@
         <?php include("top_pg.php"); ?>
 
         <div class="pn-ban-sect clearfix">
-            <div class="pn-baner clearfix">
-                <div class="pn-baner-title clearfix">
-                    <div class="pn-baner-txt">
-                        <span class="textspan">Welcome to<br />Private Nirvana...</span>
+            <a href="<?php echo $rowHome['box1_link'];?>">
+                <div class="pn-baner clearfix">
+                    <div class="pn-baner-title clearfix">
+                        <div class="pn-baner-txt">
+                            <span class="textspan"><?php echo $rowHome['box1_1_native'];?><br /><?php echo $rowHome['box1_2_native'];?></span>
+                        </div>
+                        <div class="pn-baner-txt1">
+                            <?php echo $rowHome['box1_3_native'];?><br />
+                        </div>
                     </div>
-                    <div class="pn-baner-txt1">
-                        Clean...Bright...Quiet and Private<br />
+                    <div class="pn-title-locate clearfix">
+                        <!-- <div class="pn-title-locate-txt">
+                        Living Along The Trees...
+                        </div>-->
                     </div>
+                    <img class="pn-baner-img image" src="<?php echo "../upload/home/".$rowHome['box1_img'];?>" />
                 </div>
-                <div class="pn-title-locate clearfix">
-                    <!-- <div class="pn-title-locate-txt">
-                    Living Along The Trees...
-                    </div>-->
-                </div>
-                <img class="pn-baner-img image" src="img/banner_sect1.jpg" />
-            </div>
+            </a>
         </div>
         <div class="pn-welcome-sect clearfix">
             <div class="pn-welcome-cont clearfix">
+                <a href="<?php echo $rowHome['box4_link'];?>">
                 <div class="pn-welcome-l clearfix">
-                    <img class="pn-welcome-img image" src="img/about_img.jpg" />
+                    <img class="pn-welcome-img image" src="<?php echo "../upload/home/".$rowHome['box4_img'];?>" />
                 </div>
                 <div class="pn-welcome-r clearfix">
                     <p class="pn-welcome-txt">
-                        Every Space is
+                        <?php echo $rowHome['box4_1_native'];?>
                     </p>
                     <p class="pn-private-txt">
-                        Our Concept<br />
+                        <?php echo $rowHome['box4_2_native'];?><br />
                     </p>
                     <p class="pn-about-details">
-                        “Clean...Bright...Quiet and Private” is the quintessential concept of our projects we have built
-                        on and dedicated to.<br>
-                        Under the one and only trademark, “Private Nirvana,” we persist to create special neighborly
-                        home by aiming to serve a great sense of pride to our homeowners. Each project itself – feels
-                        completely relevant from now till far future–was established in a way of new strikingly modern and
-                        characterful residence without compromising on quality. What is more, sourcing only best
-                        materials, ideal locations including creating sophisticated design, we put in extra effort to
-                        exceed customer expectations.<br />
+                        <?php echo $rowHome['box4_3_native'];?>
                     </p>
                 </div>
+                </a>
             </div>
         </div>
         <div class="pn-ban-sect1 clearfix">
+            <a href="<?php echo $rowHome['box2_link'];?>">
             <div class="pn-baner1 clearfix">
                 <div class="pn-baner-title1 clearfix">
                     <p class="pn-baner-txt2">
-                        Private Nirvana Through<br />Ekamai-Ramintra<br />
+                        <?php echo $rowHome['box2_1_native'];?><br /><?php echo $rowHome['box2_2_native'];?><br />
                     </p>
                     <p class="pn-baner-txt3">
-                        Twin House<br />
+                        <?php echo $rowHome['box2_3_native'];?><br />
                     </p>
                 </div>
                 <div class="pn-title-locate1 clearfix">
                     <p class="pn-title-locate-txt1">
-                        “ Live High THROUGH Nature ”<br />
+                        <?php echo $rowHome['box2_4_native'];?><br />
                     </p>
                 </div>
-                <img class="pn-baner-img1 image" src="img/banner_sect2.jpg" />
+                <img class="pn-baner-img1 image" src="<?php echo "../upload/home/".$rowHome['box2_img'];?>" />
             </div>
+            </a>
         </div>
         <div class="pn-ban-sect2 clearfix">
+            <a href="<?php echo $rowHome['box3_link'];?>">
             <div class="pn-baner2 clearfix">
                 <div class="pn-baner-title2 clearfix">
                     <p class="pn-baner-txt4">
-                        Private Nirvana Residence East<br />
+                        <?php echo $rowHome['box3_1_native'];?><br />
                     </p>
                     <p class="pn-baner-txt5">
-                        Single House<br />
+                    <?php echo $rowHome['box3_2_native'];?><br />
                     </p>
                 </div>
                 <div class="pn-title-locate2 clearfix">
                     <p class="pn-title-locate-txt2">
-                        “ Living Along The Trees ”<br />
+                        <?php echo $rowHome['box3_3_native'];?><br />
                     </p>
                 </div>
-                <img class="pn-baner-img2 image" src="img/banner_sect3.jpg" />
+                <img class="pn-baner-img2 image" src="<?php echo "../upload/home/".$rowHome['box3_img'];?>" />
             </div>
+            </a>
         </div>
         <div class="pn-ban-sect3 clearfix">
             <div class="pn-baner3 clearfix">
@@ -110,8 +113,8 @@
                         “ Living Through Completion ”<br />
                     </p>-->
                 </div>
-                <a href="pdf/why_private_nirvana.pdf" target="_blank">
-                    <img class="pn-baner-img3 image" src="img/banner_sect4.jpg" />
+                <a href="<?php echo $rowHome['box5_link'];?>" target="_blank">
+                    <img class="pn-baner-img3 image" src="<?php echo "../upload/home/".$rowHome['box5_img'];?>" />
                 </a>
             </div>
         </div>

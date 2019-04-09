@@ -1299,4 +1299,155 @@ function get_news_name($conn,$id){
 	return $row_video_album['album_name'];
 }
 
+function dateThai1($dateVal){
+	$dateEX = explode(" ",$dateVal);
+	$yearThai = $dateEX[2]+543;
+
+	switch($dateEX[0]){
+		case "Jan" :
+			return "ม.ค. ".$dateEX[1]." ".$yearThai;
+		break;
+		case "Feb" :
+			return "ก.พ. ".$dateEX[1]." ".$yearThai;
+		break;
+		case "Mar" :
+			return "มี.ค. ".$dateEX[1]." ".$yearThai;
+		break;
+		case "Apr" :
+			return "เม.ย. ".$dateEX[1]." ".$yearThai;
+		break;
+		case "May" :
+			return "พ.ค. ".$dateEX[1]." ".$yearThai;
+		break;
+		case "Jun" :
+			return "มิ.ย. ".$dateEX[1]." ".$yearThai;
+		break;
+		case "Jul" :
+			return "ก.ค. ".$dateEX[1]." ".$yearThai;
+		break;
+		case "Aug" :
+			return "ส.ค. ".$dateEX[1]." ".$yearThai;
+		break;
+		case "Sep" :
+			return "ก.ย. ".$dateEX[1]." ".$yearThai;
+		break;
+		case "Oct" :
+			return "ต.ค. ".$dateEX[1]." ".$yearThai;
+		break;
+		case "Nov" :
+			return "พ.ย. ".$dateEX[1]." ".$yearThai;
+		break;
+		case "Dec" :
+			return "ธ.ค. ".$dateEX[1]." ".$yearThai;
+		break;
+	}
+}
+function dateThai2($dateVal){
+	$dateEX = explode(" ",$dateVal);
+	$yearThai = $dateEX[1]+543;
+	switch($dateEX[0]){
+		case "Jan" :
+			return "ม.ค. ".$yearThai;
+		break;
+		case "Feb" :
+			return "ก.พ. ".$yearThai;
+		break;
+		case "Mar" :
+			return "มี.ค. ".$yearThai;
+		break;
+		case "Apr" :
+			return "เม.ย. ".$yearThai;
+		break;
+		case "May" :
+			return "พ.ค. ".$yearThai;
+		break;
+		case "Jun" :
+			return "มิ.ย. ".$yearThai;
+		break;
+		case "Jul" :
+			return "ก.ค. ".$yearThai;
+		break;
+		case "Aug" :
+			return "ส.ค. ".$yearThai;
+		break;
+		case "Sep" :
+			return "ก.ย. ".$yearThai;
+		break;
+		case "Oct" :
+			return "ต.ค. ".$yearThai;
+		break;
+		case "Nov" :
+			return "พ.ย. ".$yearThai;
+		break;
+		case "Dec" :
+			return "ธ.ค. ".$yearThai;
+		break;
+	}
+	
+}
+
+function resize_crop_image($max_width, $max_height, $source_file, $dst_dir, $quality = 80){
+	$imgsize = getimagesize($source_file);
+	$width = $imgsize[0];
+	$height = $imgsize[1];
+	$mime = $imgsize['mime'];
+
+	switch($mime){
+			case 'image/gif':
+					$image_create = "imagecreatefromgif";
+					$image = "imagegif";
+					break;
+
+			case 'image/png':
+					$image_create = "imagecreatefrompng";
+					$image = "imagepng";
+					$quality = 7;
+					break;
+
+			case 'image/jpeg':
+					$image_create = "imagecreatefromjpeg";
+					$image = "imagejpeg";
+					$quality = 80;
+					break;
+
+			default:
+					return false;
+					break;
+	}
+	 
+	$dst_img = imagecreatetruecolor($max_width, $max_height);
+	$src_img = $image_create($source_file);
+	 
+	$width_new = $height * $max_width / $max_height;
+	$height_new = $width * $max_height / $max_width;
+	//if the new width is greater than the actual width of the image, then the height is too large and the rest cut off, or vice versa
+	if($width_new > $width){
+			//cut point by height
+			$h_point = (($height - $height_new) / 2);
+			//copy image
+			imagecopyresampled($dst_img, $src_img, 0, 0, 0, $h_point, $max_width, $max_height, $width, $height_new);
+	}else{
+			//cut point by width
+			$w_point = (($width - $width_new) / 2);
+			imagecopyresampled($dst_img, $src_img, 0, 0, $w_point, 0, $max_width, $max_height, $width_new, $height);
+	}
+	 
+	$image($dst_img, $dst_dir, $quality);
+
+	if($dst_img)imagedestroy($dst_img);
+	if($src_img)imagedestroy($src_img);
+}
+//usage example
+
+function getProjectGroup($conn,$group_id,$lang){
+
+	$rowG = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM s_project_group WHERE project_id = '".$group_id."'"));
+
+	if($lang == "th"){
+		return $rowG['project_name_native'];
+	}else{
+		return $rowG['project_name'];
+	}
+}
+
 ?>

@@ -38,15 +38,31 @@ $newDate = date("M d, Y", $originalDate);
 
                 <div class="news-content-nav clearfix">
 
-                    <div class="news-month-list">
-                        <div class="news-content-month">March 2019</div>
-                    </div>
+                <?php 
+                        $quMenuNews = mysqli_query($conn,"SELECT * FROM `s_news` WHERE `status` = 0
+                        GROUP BY `news_month`
+                        ORDER BY `create_date` DESC");
 
-                    <div class="news-month-select">
+                        while($rowMenuNews = mysqli_fetch_array($quMenuNews,MYSQLI_ASSOC)){
+
+                            $originalDateNews = strtotime($rowMenuNews['create_date']);
+                            $newDateNews = date("M Y", $originalDateNews);
+                            $newDateNewsS = date("Y-m", $originalDateNews);
+
+                            ?>
+                            <a href="?newsMonth=<?php echo $newDateNewsS;?>"><div class="news-month-list">
+                                <div class="news-content-month"><?php echo $newDateNews;?></div>
+                            </div></a>
+                            <?php
+                        }
+
+                    ?>
+
+                    <!-- <div class="news-month-select">
                         <select>
                             <option value="February2019">March 2019</option>
                         </select>
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -63,13 +79,19 @@ $newDate = date("M d, Y", $originalDate);
                     </div>
 
 
+                    
+
+                    <?php
+                    $quNewsG = mysqli_query($conn,"SELECT * FROM s_news_gallery WHERE news_id = ".$rowNews['news_id']." ORDER BY sorts,img_id DESC");
+                    $numNewsG = mysqli_num_rows($quNewsG);
+                    
+                    if($numNewsG > 0){
+                    ?>
+ 
                     <div class="prnews_image_title">News Images</div>
                     <div class="prnews_image_gallery clearfix">
 
                         <?php
-                        $quNewsG = mysqli_query($conn,"SELECT * FROM s_news_gallery WHERE news_id = ".$rowNews['news_id']." ORDER BY sorts,img_id DESC");
-                        $numNewsG = mysqli_num_rows($quNewsG);
-
                         while($rowNewsG = mysqli_fetch_array($quNewsG,MYSQLI_ASSOC)){
                         ?>
                         <div class="prnews_image_pics">
@@ -79,6 +101,7 @@ $newDate = date("M d, Y", $originalDate);
                         <?php }?>
                     </div>
 
+                    <?php }?>
 
 
 

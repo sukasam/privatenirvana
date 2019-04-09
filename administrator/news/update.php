@@ -9,14 +9,16 @@
 		$param = "";
 		$a_not_exists = array();
 		$param = get_param($a_param,$a_not_exists);	
-		$_POST['news_desc']=addslashes($_POST['news_desc']);
-		$_POST['news_desc_native']=addslashes($_POST['news_desc_native']);
+		
+		$_POST['news_desc']=nl2br(addslashes($_POST['news_desc']));
+		$_POST['news_desc_native']=nl2br(addslashes($_POST['news_desc_native']));
 		//-------------------------------------------------------------------------------------
 		if ($_POST[mode] == "add") {
 			
 
 			$_POST['status'] = 0;
 			$_POST['sorts'] = '9999';
+			$_POST['news_month'] = date("Y-m");
 			
 			include "../include/m_add.php";			
 			$id=mysqli_insert_id($conn);
@@ -148,61 +150,6 @@
 			}
 		}	
 	}	
-
-
-	//resize and crop image by center
-function resize_crop_image($max_width, $max_height, $source_file, $dst_dir, $quality = 80){
-    $imgsize = getimagesize($source_file);
-    $width = $imgsize[0];
-    $height = $imgsize[1];
-    $mime = $imgsize['mime'];
- 
-    switch($mime){
-        case 'image/gif':
-            $image_create = "imagecreatefromgif";
-            $image = "imagegif";
-            break;
- 
-        case 'image/png':
-            $image_create = "imagecreatefrompng";
-            $image = "imagepng";
-            $quality = 7;
-            break;
- 
-        case 'image/jpeg':
-            $image_create = "imagecreatefromjpeg";
-            $image = "imagejpeg";
-            $quality = 80;
-            break;
- 
-        default:
-            return false;
-            break;
-    }
-     
-    $dst_img = imagecreatetruecolor($max_width, $max_height);
-    $src_img = $image_create($source_file);
-     
-    $width_new = $height * $max_width / $max_height;
-    $height_new = $width * $max_height / $max_width;
-    //if the new width is greater than the actual width of the image, then the height is too large and the rest cut off, or vice versa
-    if($width_new > $width){
-        //cut point by height
-        $h_point = (($height - $height_new) / 2);
-        //copy image
-        imagecopyresampled($dst_img, $src_img, 0, 0, 0, $h_point, $max_width, $max_height, $width, $height_new);
-    }else{
-        //cut point by width
-        $w_point = (($width - $width_new) / 2);
-        imagecopyresampled($dst_img, $src_img, 0, 0, $w_point, 0, $max_width, $max_height, $width_new, $height);
-    }
-     
-    $image($dst_img, $dst_dir, $quality);
- 
-    if($dst_img)imagedestroy($dst_img);
-    if($src_img)imagedestroy($src_img);
-}
-//usage example
 
 
 ?>
@@ -341,27 +288,13 @@ function check(frm){
 							<tr >
                 <td width="15%" style="vertical-align: top;" nowrap class="name">News Descriptions <img src="../images/lang/eng.png" width="20" style="vertical-align: middle;"/></td>
                 <td width="100%">
-									<?php  //--------เรียกใช้ fckeditor--------------------- 
-											$oFCKeditor = new FCKeditor('news_desc') ;
-											$oFCKeditor->BasePath = '../fckeditor/';
-											$oFCKeditor->ToolbarSet	= 'Basic' ;
-											$oFCKeditor->Height	= 400;
-											$oFCKeditor->Value = stripslashes($news_desc);
-											$oFCKeditor->Create() ;
-									?>
+									<textarea rows="10" cols="50" name="news_desc" id="news_desc"><?php  echo strip_tags($news_desc); ?></textarea>
 								</td>
               </tr>
 							<tr >
                 <td width="15%" nowrap class="name" style="vertical-align: top;">News Descriptions <img src="../images/lang/tha.png" width="20" style="vertical-align: middle;"/></td>
                 <td width="100%">
-									<?php  //--------เรียกใช้ fckeditor--------------------- 
-											$oFCKeditor = new FCKeditor('news_desc_native') ;
-											$oFCKeditor->BasePath = '../fckeditor/';
-											$oFCKeditor->ToolbarSet	= 'Basic' ;
-											$oFCKeditor->Height	= 400;
-											$oFCKeditor->Value = stripslashes($news_desc_native);
-											$oFCKeditor->Create() ;
-									?>
+									<textarea rows="10" cols="50" name="news_desc_native" id="news_desc_native"><?php  echo strip_tags($news_desc_native); ?></textarea>
 								</td>
               </tr>
 							<tr >
@@ -394,6 +327,7 @@ function check(frm){
 			post_param($a_param,$a_not_exists); 
 		?>
       <input name="mode" type="hidden" id="mode" value="<?php  echo $_GET['mode'];?>">
+			<input name="news_month" type="hidden" id="news_month" value="<?php  echo $news_month;?>">
       <input name="mid" type="hidden" id="mid" value="<?php  echo $_GET['mid'];?>">
       <input type="hidden" name="sorts" value="<?php  echo $sorts;?>">
       <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php  echo $PK_field;?>" value="<?php  echo $_GET[$PK_field];?>">

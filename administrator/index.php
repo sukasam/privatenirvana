@@ -9,7 +9,7 @@
 		if ($rec = mysqli_fetch_array ($query)) { 
 			$_SESSION["login_id"] = $rec["user_id"];
 			$_SESSION["login_name"] = $rec["username"];
-			header ("location:welcome/index.php");
+			header ("location:home/index.php");
 		}else{
 			$msg_login="Username or password incorrect !!";
 		}

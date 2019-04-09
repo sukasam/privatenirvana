@@ -32,22 +32,45 @@ include_once("../include/app_top.php");
 
                 <div class="news-content-nav clearfix">
 
-                    <div class="news-month-list">
-                        <div class="news-content-month">March 2019</div>
-                    </div>
+                    <?php 
+                        $quMenuNews = mysqli_query($conn,"SELECT * FROM `s_news` WHERE `status` = 0
+                        GROUP BY `news_month`
+                        ORDER BY `create_date` DESC");
 
-                    <div class="news-month-select">
+                        while($rowMenuNews = mysqli_fetch_array($quMenuNews,MYSQLI_ASSOC)){
+
+                            $originalDateNews = strtotime($rowMenuNews['create_date']);
+                            $newDateNews = date("M Y", $originalDateNews);
+                            $newDateNewsS = date("Y-m", $originalDateNews);
+
+                            ?>
+                            <a href="?newsMonth=<?php echo $newDateNewsS;?>"><div class="news-month-list">
+                                <div class="news-content-month"><?php echo $newDateNews;?></div>
+                            </div></a>
+                            <?php
+                        }
+
+                    ?>
+
+                    <!-- <div class="news-month-select">
                         <select>
                             <option value="February2019">March 2019</option>
 
                         </select>
-                    </div>
+                    </div> -->
 
                 </div>
 
                 <div class="news-content-info clearfix">
                     <?php
-                    $quNews = mysqli_query($conn,"SELECT * FROM s_news WHERE status = 0 ORDER BY sorts,news_id DESC");
+                    $condition = "";
+                    $conLimit = "";
+                    if(isset($_GET['newsMonth']) && $_GET['newsMonth'] != ""){
+                        $condition = " AND `create_date` LIKE '".$_GET['newsMonth']."%'";
+                    }else{
+                        $conLimit = " LIMIT 0, 10";
+                    }
+                    $quNews = mysqli_query($conn,"SELECT * FROM s_news WHERE status = 0 ".$condition." ORDER BY sorts,news_id DESC".$conLimit);
                     $numNews = mysqli_num_rows($quNews);
                     ?>
                     <p class="news-content-title">
