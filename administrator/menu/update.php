@@ -5,12 +5,12 @@ error_reporting(0);
 	include ("../../include/function.php");
 	include ("config.php");	
 	$mode=$_REQUEST['mode'];
-	if ($_POST[mode] <> "") { 
+	if ($_POST['mode'] <> "") { 
 		$param = "";
 		$a_not_exists = array();
 		$param = get_param($a_param,$a_not_exists);
 
-		if ($_POST[mode] == "add") { 
+		if ($_POST['mode'] == "add") { 
 				include "../include/m_add.php";
 				$id = mysqli_insert_id($conn);
 				$sql="update $tbl_name set rank ='$id' where $PK_field='$id' ";
@@ -18,18 +18,18 @@ error_reporting(0);
 			header ("location:index.php?" . $param); 
 		}
 
-		if ($_POST[mode] == "update" ) { 
+		if ($_POST['mode'] == "update" ) { 
 			include ("../include/m_update.php");
 			header ("location:index.php?" . $param);
 		}
 	}
 
-	if ($_GET[mode] == "add") {
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"add");
+	if ($_GET['mode'] == "add") {
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"add");
 	}
 
-	if ($_GET[mode] == "update") { 
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"update");
+	if ($_GET['mode'] == "update") { 
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"update");
 		$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] ."'";
 		$query = mysqli_query ($conn,$sql);
 		while ($rec = mysqli_fetch_array ($query)) { 
@@ -178,11 +178,11 @@ function check(frm){
 
               
 
-              <?php  if ($_GET[mode] == "add") { ?>
+              <?php  if ($_GET['mode'] == "add") { ?>
 
               <?php  } ?>
 
-              <?php  if ($_GET[mode] == "update") { ?>
+              <?php  if ($_GET['mode'] == "update") { ?>
 
               <?php  } ?>
 

@@ -27,7 +27,7 @@ error_reporting(0);
 		}
 		if ($_REQUEST[option] == "Edit" ) { 
 			//include ("../include/m_update.php");
-			$sql = "update s_user_p  set group_id = '$_POST[group_id]',module_id = '$_POST[module_id]',read_p = '$_POST[read_p]',add_p = '$_POST[add_p]',update_p = '$_POST[update_p]',delete_p = '$_POST[delete_p]', update_date = '".date("Y-m-d H:i:s")."', update_by= '$_SESSION[login_id]' where user_p_id = '$_REQUEST[user_p_id]' ";
+			$sql = "update s_user_p  set group_id = '$_POST[group_id]',module_id = '$_POST[module_id]',read_p = '$_POST[read_p]',add_p = '$_POST[add_p]',update_p = '$_POST[update_p]',delete_p = '$_POST[delete_p]', update_date = '".date("Y-m-d H:i:s")."', update_by= '$_SESSION['login_id']' where user_p_id = '$_REQUEST[user_p_id]' ";
 			mysqli_query($conn,$sql);
 			header ("location:?" . $param); 
 		}
@@ -39,11 +39,11 @@ error_reporting(0);
 		header ("location:?" . $param); 
 	}
 	
-	if ($_GET[mode] == "add") { 
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"add");
+	if ($_GET['mode'] == "add") { 
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"add");
 	}
-	if ($_GET[mode] == "update") { 
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"update");
+	if ($_GET['mode'] == "update") { 
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"update");
 		 $_SESSION[s_user_id] = $_GET[user_id];
 		/*$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] ."'";
 		$query = mysqli_query ($conn,$sql);
@@ -147,8 +147,8 @@ function confirmDelete(delUrl,text) {
                 <td valign="middle"><div align="center">
                     <?php  if($rec[delete_p] == 1) $image = 1; else $image = 0;?>
                     <img src="../images/check<?php  echo $image?>.gif" border="0"> </div></td>
-                <td><div align="center"><a href="?action=Edit&mode=<?php  echo $_GET[mode];?>&<?php  echo "$PK_field=".$rec[$PK_field];?>&user_p_id=<?php  echo $rec[user_p_id];?>&module_id=<?php  echo $rec[module_id];?>&<?php  echo $param;?>">Edit</a></div></td>
-                <td><div align="center"> <a href="permission.php?action=delete&mode=<?php  echo $_GET[mode];?>&<?php  echo "$PK_field=".$rec[$PK_field];?>&user_p_id=<?php  echo $rec[user_p_id];?>&module_id=<?php  echo $rec[module_id];?>&<?php  echo $param;?>" onClick="return confirm('คุณต้องการลบ module <?php  echo $rec[module_name]; ?>')">Delete</a></div></td>
+                <td><div align="center"><a href="?action=Edit&mode=<?php  echo $_GET['mode'];?>&<?php  echo "$PK_field=".$rec[$PK_field];?>&user_p_id=<?php  echo $rec[user_p_id];?>&module_id=<?php  echo $rec[module_id];?>&<?php  echo $param;?>">Edit</a></div></td>
+                <td><div align="center"> <a href="permission.php?action=delete&mode=<?php  echo $_GET['mode'];?>&<?php  echo "$PK_field=".$rec[$PK_field];?>&user_p_id=<?php  echo $rec[user_p_id];?>&module_id=<?php  echo $rec[module_id];?>&<?php  echo $param;?>" onClick="return confirm('คุณต้องการลบ module <?php  echo $rec[module_name]; ?>')">Delete</a></div></td>
               </tr>
               <?php  } // end while?>
               <tr >

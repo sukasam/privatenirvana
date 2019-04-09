@@ -4,12 +4,12 @@
 	include ("../../include/function.php");
 	include ("config.php");
 
-	if ($_POST[mode] <> "") { 
+	if ($_POST['mode'] <> "") { 
 		$param = "";
 		$a_not_exists = array();
 		$param = get_param($a_param,$a_not_exists);
 
-		if ($_POST[mode] == "add") { 
+		if ($_POST['mode'] == "add") { 
 			
 			include "../include/m_add.php";
 			
@@ -38,7 +38,7 @@
 			
 		}
 //-------------------------------------------------------------------------------------------------------------------------------------
-		if ($_POST[mode] == "update" ) { 	
+		if ($_POST['mode'] == "update" ) { 	
 			
 			include "../include/m_update.php";
 			$id=$_REQUEST['lang_id'];
@@ -68,12 +68,12 @@
 	}
 }
 //-------------------------------------------------------------------------------------------------------------------------------------
-	if ( ($_GET[mode] == "add") && (count($_POST) == 0)) { 
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"add");
+	if ( ($_GET['mode'] == "add") && (count($_POST) == 0)) { 
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"add");
 	}
 //-------------------------------------------------------------------------------------------------------------------------------------
-	if ( ($_GET[mode] == "update") && (count($_POST) == 0) ) { 
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"update");
+	if ( ($_GET['mode'] == "update") && (count($_POST) == 0) ) { 
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"update");
 		$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] ."'";
 		$query = mysqli_query ($conn,$sql);
 		while ($rec = mysqli_fetch_array ($query)) { 
@@ -169,7 +169,7 @@ function check(frm){
                   <?php  
 				  if($_GET['mode'] != 'add'){
 					  if(!empty($lang_images)){?>
-                  <img src="../../upload/lang/<?php  echo $lang_images?>" alt="" width="60">[ <a href="?mode=<?php  echo $_GET[mode];?>&<?php  echo $PK_field?>=<?php  echo $$PK_field;?>&<?php  echo $FR_field?>=<?php  echo $$FR_field;?>&del_id=<?php  echo $lang_images;?>&page=<?php  echo $page;?>">Delete</a>]
+                  <img src="../../upload/lang/<?php  echo $lang_images?>" alt="" width="60">[ <a href="?mode=<?php  echo $_GET['mode'];?>&<?php  echo $PK_field?>=<?php  echo $$PK_field;?>&<?php  echo $FR_field?>=<?php  echo $$FR_field;?>&del_id=<?php  echo $lang_images;?>&page=<?php  echo $page;?>">Delete</a>]
                   <?php  }?>
                   <input name="lang_images" type="hidden" value="<?php  echo $lang_images; ?>">
                   <?php  }?></td>

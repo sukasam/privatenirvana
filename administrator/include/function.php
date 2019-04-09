@@ -178,12 +178,12 @@ function format_date_th ($value,$type) {
 	$s_day += 0;
 	if ($s_day == "0") return "";
 	$s_year += 543;
-	$month_full_th = array ('','Á¡ÃÒ¤Á', '¡ØÁÀÒ¾Ñ¹¸ì', 'ÁÕ¹Ò¤Á', 'àÁÉÒÂ¹', '¾ÄÉÀÒ¤Á', 'ÁÔ¶Ø¹ÒÂ¹', '¡Ã¡®Ò¤Á', 'ÊÔ§ËÒ¤Á',' ¡Ñ¹ÂÒÂ¹', 'µØÅÒ¤Á', '¾ÄÈ¨Ô¡ÒÂ¹','¸Ñ¹ÇÒ¤Á');
-	$month_brief_th = array ('','Á.¤.','¡.¾.','ÁÕ.¤.','àÁ.Â.','¾.¤.','ÁÔ.Â.','¡.¤.','Ê.¤.','¡.Â.','µ.¤.','¾.Â.','¸.¤.');
-	$day_of_week = array("ÍÒ·ÔµÂì","¨Ñ¹·Ãì","ÍÑ§¤ÒÃ","¾Ø¸","¾ÄËÑÊº´Õ","ÈØ¡Ãì","àÊÒÃì"); 
+	$month_full_th = array ('','ï¿½ï¿½ï¿½Ò¤ï¿½', 'ï¿½ï¿½ï¿½ï¿½Ò¾Ñ¹ï¿½ï¿½', 'ï¿½Õ¹Ò¤ï¿½', 'ï¿½ï¿½ï¿½ï¿½Â¹', 'ï¿½ï¿½ï¿½ï¿½Ò¤ï¿½', 'ï¿½Ô¶Ø¹ï¿½Â¹', 'ï¿½Ã¡ï¿½Ò¤ï¿½', 'ï¿½Ô§ï¿½Ò¤ï¿½',' ï¿½Ñ¹ï¿½ï¿½Â¹', 'ï¿½ï¿½ï¿½Ò¤ï¿½', 'ï¿½ï¿½È¨Ô¡ï¿½Â¹','ï¿½Ñ¹ï¿½Ò¤ï¿½');
+	$month_brief_th = array ('','ï¿½.ï¿½.','ï¿½.ï¿½.','ï¿½ï¿½.ï¿½.','ï¿½ï¿½.ï¿½.','ï¿½.ï¿½.','ï¿½ï¿½.ï¿½.','ï¿½.ï¿½.','ï¿½.ï¿½.','ï¿½.ï¿½.','ï¿½.ï¿½.','ï¿½.ï¿½.','ï¿½.ï¿½.');
+	$day_of_week = array("ï¿½Ò·Ôµï¿½ï¿½","ï¿½Ñ¹ï¿½ï¿½ï¿½","ï¿½Ñ§ï¿½ï¿½ï¿½","ï¿½Ø¸","ï¿½ï¿½ï¿½ï¿½Êºï¿½ï¿½","ï¿½Ø¡ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½"); 
 	switch ($type) { 
 		case "1" : // ?????? 4 ????????? 2548
-			$msg = "ÇÑ¹·Õè ". $s_day . " " .  $month_full_th[$s_month]  . " " .  $s_year ;
+			$msg = "ï¿½Ñ¹ï¿½ï¿½ï¿½ ". $s_day . " " .  $month_full_th[$s_month]  . " " .  $s_year ;
 			break;
 		case "2" :  // 4 ?.?. 2548
 			$msg =  $s_day . " " .  $month_brief_th[$s_month]  . " " .  $s_year ;
@@ -197,7 +197,7 @@ function format_date_th ($value,$type) {
 		case "5" :  // 4 ?.?. 2548  
 			$msg =  $s_day . " " .  $month_brief_th[$s_month]   . " " .  $s_year  ;
 			break;
-		case "6" :  // 4 ¡.¾. 51
+		case "6" :  // 4 ï¿½.ï¿½. 51
 			$msg =  $s_day . " " .  $month_brief_th[$s_month]   . " " .  substr($s_year,-2)  ;
 			break;
 		}
@@ -207,7 +207,7 @@ function format_date_th ($value,$type) {
 
 function format_date_th2($value){
 	$date = explode("-",$value);
-	$month_full_th = array ('','Á¡ÃÒ¤Á', '¡ØÁÀÒ¾Ñ¹¸ì', 'ÁÕ¹Ò¤Á', 'àÁÉÒÂ¹', '¾ÄÉÀÒ¤Á', 'ÁÔ¶Ø¹ÒÂ¹', '¡Ã¡®Ò¤Á', 'ÊÔ§ËÒ¤Á',' ¡Ñ¹ÂÒÂ¹', 'µØÅÒ¤Á', '¾ÄÉ¨Ô¡ÒÂ¹','¸Ñ¹ÇÒ¤Á');
+	$month_full_th = array ('','ï¿½ï¿½ï¿½Ò¤ï¿½', 'ï¿½ï¿½ï¿½ï¿½Ò¾Ñ¹ï¿½ï¿½', 'ï¿½Õ¹Ò¤ï¿½', 'ï¿½ï¿½ï¿½ï¿½Â¹', 'ï¿½ï¿½ï¿½ï¿½Ò¤ï¿½', 'ï¿½Ô¶Ø¹ï¿½Â¹', 'ï¿½Ã¡ï¿½Ò¤ï¿½', 'ï¿½Ô§ï¿½Ò¤ï¿½',' ï¿½Ñ¹ï¿½ï¿½Â¹', 'ï¿½ï¿½ï¿½Ò¤ï¿½', 'ï¿½ï¿½É¨Ô¡ï¿½Â¹','ï¿½Ñ¹ï¿½Ò¤ï¿½');
 	$text = (int)$date[2]." ".$month_full_th[$date[1]]." ".($date[0]);
 	return($text);
 }
@@ -1018,10 +1018,10 @@ function Show_Full_Category_spec ($value)
 
 function record_member($page_name){
 	$now_date = date("Y-m-d");
-	$sql = "select * from member_log where user_id = '$_SESSION[login_id]' and create_date like '$now_date%' ";
+	$sql = "select * from member_log where user_id = '$_SESSION['login_id']' and create_date like '$now_date%' ";
 	$query = mysqli_query($conn,$sql);
 	if(mysqli_num_rows($query) == 0){
-		$sql = "insert into member_log (user_id,page_log,create_date) values ('$_SESSION[login_id]','$page_name','$now_date') ";
+		$sql = "insert into member_log (user_id,page_log,create_date) values ('$_SESSION['login_id']','$page_name','$now_date') ";
 		mysqli_query($conn,$sql);
 	}else{
 		$rec = mysqli_fetch_array($query);

@@ -3,17 +3,20 @@
 	include ("../../include/config.php");
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
-	include ("config.php");
+  include ("config.php");
 
-	if ($_POST[mode] <> "") { 
+  print_r($_REQUEST);
+
+	if ($_POST['mode'] <> "") { 
 		$param = "";
 		$a_not_exists = array();
     $param = get_param($a_param,$a_not_exists);
     
 
-		if ($_POST[mode] == "add") { 
+		if ($_POST['mode'] == "add") { 
 			include "../include/m_add.php";
-			header ("location:index.php?" . $param); 
+      header ("location:index.php?" . $param); 
+      
 		}
 		if ($_POST['mode'] == "update" ) { 
 
@@ -50,7 +53,7 @@
 					$sql = "update $tbl_name set box1_img = '".$filename."' where $PK_field = '".$id."' ";
           mysqli_query($conn, $sql);	
           
-          //echo $_POST[mode]."| dsfsf | ".$_REQUEST['box1_img']." | ".$_FILES['fimages1']['name']." | ".$check["mime"];
+          //echo $_POST['mode']."| dsfsf | ".$_REQUEST['box1_img']." | ".$_FILES['fimages1']['name']." | ".$check["mime"];
 
           resize_crop_image(1200, 800, $target_file, $target_file);
 					
@@ -87,7 +90,7 @@
 					$sql = "update $tbl_name set box2_img = '".$filename."' where $PK_field = '".$id."' ";
           mysqli_query($conn, $sql);	
           
-          //echo $_POST[mode]."| dsfsf | ".$_REQUEST['box1_img']." | ".$_FILES['fimages1']['name']." | ".$check["mime"];
+          //echo $_POST['mode']."| dsfsf | ".$_REQUEST['box1_img']." | ".$_FILES['fimages1']['name']." | ".$check["mime"];
 
           resize_crop_image(1200, 800, $target_file, $target_file);
 					
@@ -124,7 +127,7 @@
 					$sql = "update $tbl_name set box3_img = '".$filename."' where $PK_field = '".$id."' ";
           mysqli_query($conn, $sql);	
           
-          //echo $_POST[mode]."| dsfsf | ".$_REQUEST['box1_img']." | ".$_FILES['fimages1']['name']." | ".$check["mime"];
+          //echo $_POST['mode']."| dsfsf | ".$_REQUEST['box1_img']." | ".$_FILES['fimages1']['name']." | ".$check["mime"];
 
           resize_crop_image(1200, 800, $target_file, $target_file);
 					
@@ -161,7 +164,7 @@
 					$sql = "update $tbl_name set box4_img = '".$filename."' where $PK_field = '".$id."' ";
           mysqli_query($conn, $sql);	
           
-          //echo $_POST[mode]."| dsfsf | ".$_REQUEST['box1_img']." | ".$_FILES['fimages1']['name']." | ".$check["mime"];
+          //echo $_POST['mode']."| dsfsf | ".$_REQUEST['box1_img']." | ".$_FILES['fimages1']['name']." | ".$check["mime"];
 
           resize_crop_image(1200, 800, $target_file, $target_file);
 					
@@ -199,7 +202,7 @@
 					$sql = "update $tbl_name set box5_img = '".$filename."' where $PK_field = '".$id."' ";
           mysqli_query($conn, $sql);	
           
-          //echo $_POST[mode]."| dsfsf | ".$_REQUEST['box1_img']." | ".$_FILES['fimages1']['name']." | ".$check["mime"];
+          //echo $_POST['mode']."| dsfsf | ".$_REQUEST['box1_img']." | ".$_FILES['fimages1']['name']." | ".$check["mime"];
 
           resize_crop_image(1200, 800, $target_file, $target_file);
 					
@@ -217,11 +220,11 @@
 
 		}
 	}
-	if ($_GET[mode] == "add") { 
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"add");
+	if ($_GET['mode'] == "add") { 
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"add");
 	}
-	if ($_GET[mode] == "update") { 
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"update");
+	if ($_GET['mode'] == "update") { 
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"update");
 		$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] ."'";
 		$query = mysqli_query ($conn,$sql);
 		while ($rec = mysqli_fetch_array ($query)) { 
@@ -430,7 +433,7 @@ function check(frm){
 			$a_not_exists = array();
 			post_param($a_param,$a_not_exists); 
 			?>
-      <input name="mode" type="hidden" id="mode" value="<?php  echo $_GET[mode];?>">
+      <input name="mode" type="hidden" id="mode" value="<?php  echo $_GET['mode'];?>">
       <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php  echo $PK_field;?>" value="<?php  echo $_GET[$PK_field];?>">
     </div>
   </form>

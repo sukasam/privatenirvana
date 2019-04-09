@@ -3,7 +3,7 @@
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
 	include ("config.php");
-	Check_Permission ($conn,$check_module,$_SESSION[login_id],"read");
+	Check_Permission ($conn,$check_module,$_SESSION['login_id'],"read");
 	if ($_GET[page] == ""){$_REQUEST[page] = 1;	}
 	$param = get_param($a_param,$a_not_exists);
 	
@@ -41,7 +41,7 @@
 	 if ($_GET[b] <> "" and $_GET[s] <> "") { 
 		if ($_GET[s] == 0) $status = 1;
 		if ($_GET[s] == 1) $status = 0;
-		Check_Permission ($conn,$check_module,$_SESSION[login_id],"update");
+		Check_Permission ($conn,$check_module,$_SESSION['login_id'],"update");
 		$sql_status = "update $tbl_name set flag_show = '$status' where $PK_field = '$_GET[b]'";
 		mysqli_query ($conn,$sql_status);
 		header ("location:?mode=add&project_id=$_REQUEST[project_id]&".$param); 
@@ -50,14 +50,14 @@
 	 if ($_GET[b] <> "" and $_GET[m] <> "") { 
 		if ($_GET[m] == 0) $status = 1;
 		if ($_GET[m] == 1) $status = 0;
-		Check_Permission ($conn,$check_module,$_SESSION[login_id],"update");
+		Check_Permission ($conn,$check_module,$_SESSION['login_id'],"update");
 		$sql_status = "update $tbl_name set main_show = '$status' where $PK_field = '$_GET[b]'";
 		mysqli_query ($conn,$sql_status);
 		echo $sql_status;
 		header ("location:?mode=add&project_id=$_REQUEST[project_id]&".$param); 
 	}
 	//-------------------------------------------------------------------------------------
-	if ($_GET[mode] == "update") { 
+	if ($_GET['mode'] == "update") { 
 		$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] ."'";
 		$query = mysqli_query ($conn,$sql);
 		while ($rec = mysqli_fetch_array ($query)) { 

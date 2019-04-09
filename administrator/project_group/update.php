@@ -5,14 +5,14 @@
 	include ("../../include/function.php");
 	include ("config.php");
 
-	if ($_POST[mode] <> "") { 
+	if ($_POST['mode'] <> "") { 
 		$param = "";
 		$a_not_exists = array();
 		$param = get_param($a_param,$a_not_exists);	
 		$_POST['project_desc']=addslashes($_POST['project_desc']);
 		$_POST['project_desc_native']=addslashes($_POST['project_desc_native']);
 		//-------------------------------------------------------------------------------------
-		if ($_POST[mode] == "add") {
+		if ($_POST['mode'] == "add") {
 			
 
 			$_POST['status'] = 0;
@@ -35,7 +35,7 @@
 	
 
 		//-------------------------------------------------------------------------------------
-		if ($_POST[mode] == "update" ) { 
+		if ($_POST['mode'] == "update" ) { 
 			
 			$project_name = $_POST['project_name'];
 			$project_name_old = $_POST['project_name_old'];
@@ -55,12 +55,12 @@
 	}
 	
 	//--------------------------------------------------------------------------------
-	if ($_GET[mode] == "add") { 
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"add");
+	if ($_GET['mode'] == "add") { 
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"add");
 	}
 	//--------------------------------------------------------------------------------
-	if ($_GET[mode] == "update") { 
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"update");
+	if ($_GET['mode'] == "update") { 
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"update");
 		$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] ."'";
 		$query = mysqli_query ($conn,$sql);
 		while ($rec = mysqli_fetch_array ($query)) { 

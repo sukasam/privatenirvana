@@ -11,7 +11,7 @@
 
 
 
-	if ($_POST[mode] <> "") { 
+	if ($_POST['mode'] <> "") { 
 
 		$param = "";
 
@@ -21,7 +21,7 @@
 
 
 
-		if ($_POST[mode] == "add") { 
+		if ($_POST['mode'] == "add") { 
 
 				include "../include/m_add.php";
 
@@ -35,7 +35,7 @@
 
 		}
 
-		if ($_POST[mode] == "update" ) { 
+		if ($_POST['mode'] == "update" ) { 
 
 			
 
@@ -49,15 +49,15 @@
 
 	}
 
-	if ($_GET[mode] == "add") { 
+	if ($_GET['mode'] == "add") { 
 
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"add");
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"add");
 
 	}
 
-	if ($_GET[mode] == "update") { 
+	if ($_GET['mode'] == "update") { 
 
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"update");
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"update");
 
 		$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] ."'";
 
@@ -247,11 +247,11 @@ function check(frm){
 
               
 
-              <?php  if ($_GET[mode] == "add") { ?>
+              <?php  if ($_GET['mode'] == "add") { ?>
 
               <?php  } ?>
 
-              <?php  if ($_GET[mode] == "update") { ?>
+              <?php  if ($_GET['mode'] == "update") { ?>
 
               <?php  } ?>
 

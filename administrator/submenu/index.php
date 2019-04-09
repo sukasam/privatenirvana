@@ -5,7 +5,7 @@ error_reporting(0);
 	include ("../../include/function.php");
 	include ("config.php");
 
-	Check_Permission ($conn,$check_module,$_SESSION[login_id],"read");
+	Check_Permission ($conn,$check_module,$_SESSION['login_id'],"read");
 
 	if ($_GET[page] == ""){$_REQUEST[page] = 1;	}
 

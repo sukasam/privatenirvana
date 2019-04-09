@@ -5,12 +5,12 @@ error_reporting(0);
 	include ("../../include/function.php");
 	include ("config.php");
 
-	if ($_POST[mode] <> "") { 
+	if ($_POST['mode'] <> "") { 
 		$param = "";
 		$a_not_exists = array();
 		$param = get_param($a_param,$a_not_exists);
 
-		if ($_POST[mode] == "add") { 
+		if ($_POST['mode'] == "add") { 
 			$sql = "select * from $tbl_name where username = '$_POST[username]' ";
 			$query = mysqli_query($conn,$sql);
 			if(mysqli_num_rows($query) == 0) {
@@ -22,7 +22,7 @@ error_reporting(0);
 			}
 		}
 //-------------------------------------------------------------------------------------------------------------------------------------
-		if ($_POST[mode] == "update" ) { 	
+		if ($_POST['mode'] == "update" ) { 	
 			$sql = "select * from s_user where username = '$_POST[username]' and user_id <> '$_POST[$PK_field]' ";
 			$query = mysqli_query ($conn,$sql);
 			if (mysqli_num_rows($query) == 0) { //====> Username Avalible 
@@ -36,12 +36,12 @@ error_reporting(0);
 	}
 }
 //-------------------------------------------------------------------------------------------------------------------------------------
-	if ( ($_GET[mode] == "add") && (count($_POST) == 0)) { 
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"add");
+	if ( ($_GET['mode'] == "add") && (count($_POST) == 0)) { 
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"add");
 	}
 //-------------------------------------------------------------------------------------------------------------------------------------
-	if ( ($_GET[mode] == "update") && (count($_POST) == 0) ) { 
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"update");
+	if ( ($_GET['mode'] == "update") && (count($_POST) == 0) ) { 
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"update");
 		$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] ."'";
 		$query = mysqli_query ($conn,$sql);
 		while ($rec = mysqli_fetch_array ($query)) { 

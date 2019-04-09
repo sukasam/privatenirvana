@@ -8,9 +8,9 @@ error_reporting(0);
 	$param = "";
 	$a_not_exists = array();
 	$param = get_param($a_param,$a_not_exists);
-	if ($_POST[mode] <> "") { 
+	if ($_POST['mode'] <> "") { 
 
-		if ($_POST[mode] == "update") { 
+		if ($_POST['mode'] == "update") { 
 			$param = get_return_param();
 		
 			$sql = "delete from $tbl_name where user_id = '$_POST[user_id]' ";
@@ -35,8 +35,8 @@ error_reporting(0);
 	
 
 	
-	if ($_GET[mode] == "update") { 
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"update");
+	if ($_GET['mode'] == "update") { 
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"update");
 		$sql = "select * from s_user where user_id = '$_GET[user_id]' ";
 		$rec = mysqli_fetch_array(mysqli_query ($conn,$sql));
 		$user_name = $rec[username];
@@ -132,7 +132,7 @@ function check(frm){
 			$a_not_exists = array();
 			post_param($a_param,$a_not_exists); 
 			?>
-      <input name="mode" type="hidden" id="mode" value="<?php  echo $_GET[mode];?>">
+      <input name="mode" type="hidden" id="mode" value="<?php  echo $_GET['mode'];?>">
       <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php  echo $PK_field;?>" value="<?php  echo $_GET[$PK_field];?>">
     </div>
   </form>

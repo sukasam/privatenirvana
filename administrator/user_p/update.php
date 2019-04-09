@@ -5,11 +5,11 @@ error_reporting(0);
 	include ("../../include/function.php");
 	include ("config.php");
 
-	if ($_POST[mode] <> "") {  
+	if ($_POST['mode'] <> "") {  
 		$param = "";
 		if ($_POST[$FR_field] <> "") { $param .=  "&" . $FR_field . "=" . $_POST[$FR_field]; } 
 		if ($_POST[page] <> "") { $param .=  "&" . page . "=" . $_POST[page]; } 
-		if ($_POST[mode] <> "") { $param .=  "&" . mode . "=" . $_POST[mode]; } 
+		if ($_POST['mode'] <> "") { $param .=  "&" . mode . "=" . $_POST['mode']; } 
 		if ($_POST[user_id] <> "") { $param .=  "&" . user_id . "=" . $_POST[user_id]; } 
 		$param = substr ($param,1);
 
@@ -28,11 +28,11 @@ error_reporting(0);
 		mysqli_query($conn,$sql);
 	}
 	
-	if ($_GET[mode] == "add") { 
-		 Check_Permission ($conn,$check_module,$_SESSION[login_id],"add");
+	if ($_GET['mode'] == "add") { 
+		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"add");
 	}
-	if ($_GET[mode] == "update") { 
-		// Check_Permission ($conn,$check_module,$_SESSION[login_id],"update");
+	if ($_GET['mode'] == "update") { 
+		// Check_Permission ($conn,$check_module,$_SESSION['login_id'],"update");
 		 $_SESSION[s_user_id] = $_GET[user_id];
 		/*$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] ."'";
 		$query = mysqli_query ($conn,$sql);
@@ -137,8 +137,8 @@ function confirmDelete(delUrl,text) {
                 <td><div align="center">
                     <input type="checkbox" name="checkbox4" value="checkbox" <?php  if($rec[delete_p] == 1) echo "checked"; ?>>
                 </div></td>
-                <td><div align="center"><a href="?action=Edit&user_id=<?php  echo $_GET[user_id];?>&mode=<?php  echo $_GET[mode];?>&<?php  echo "$PK_field=".$rec[$PK_field];?>">Edit</a></div></td>
-                <td><div align="center"><a href="javascript:confirmDelete('update.php?action=delete&user_id=<?php  echo $_GET[user_id];?>&mode=<?php  echo $_GET[mode];?>&<?php  echo "$PK_field=".$rec[$PK_field];?>','Module <?php  echo $rec[module_name];?>')">Delete</a></div></td>
+                <td><div align="center"><a href="?action=Edit&user_id=<?php  echo $_GET[user_id];?>&mode=<?php  echo $_GET['mode'];?>&<?php  echo "$PK_field=".$rec[$PK_field];?>">Edit</a></div></td>
+                <td><div align="center"><a href="javascript:confirmDelete('update.php?action=delete&user_id=<?php  echo $_GET[user_id];?>&mode=<?php  echo $_GET['mode'];?>&<?php  echo "$PK_field=".$rec[$PK_field];?>','Module <?php  echo $rec[module_name];?>')">Delete</a></div></td>
               </tr>
               <?php 
 			} // end while
