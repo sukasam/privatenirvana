@@ -1284,7 +1284,7 @@
 		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"add");
 	}
 	//--------------------------------------------------------------------------------
-	if ($_GET[mode] == "update") { 
+	if ($_GET['mode'] == "update") { 
 		 Check_Permission ($conn,$check_module,$_SESSION['login_id'],"update");
 		$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] ."'";
 		$query = mysqli_query ($conn,$sql);

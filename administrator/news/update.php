@@ -1,8 +1,9 @@
 <?php 
+	error_reporting(0);
 	include ("../../include/config.php");
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
-	include("../fckeditor/fckeditor.php");
+	include ("../fckeditor/fckeditor.php");
 	include ("config.php");
 
 	if ($_POST['mode'] <> "") { 
@@ -58,7 +59,7 @@
 	
 				} // end if ($_FILES[fimages][name] != "")	
 				
-				
+								
 				echo '<script type="text/javascript">
                     	window.location="index.php?mid=7";
                     </script>';
@@ -83,11 +84,6 @@
 			include ("../include/m_update.php");	
 			
 			$id=$_REQUEST['news_id'];
-			
-			if($news_name_old != $news_name){
-				sleep(1);    // this does the trick
-				rename ("../../news/".$news_name_old."/", "../../news/".$news_name."/"); //no error 	
-			}
 			
 			if ($_FILES['fimages']['name'] != "") { 
 				@unlink("../../upload/news/".$_REQUEST['images']);

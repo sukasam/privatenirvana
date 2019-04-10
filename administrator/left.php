@@ -9,8 +9,8 @@ class : li a:current is a now active
 <DIV id=sidebar>
 
 <?php
-	//error_reporting(0)
-error_reporting(~E_NOTICE);;	
+	error_reporting(0);
+error_reporting(~E_NOTICE);	
   //$pageURL = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
 //	$pp = strrpos($_SERVER["SCRIPT_NAME"],"/");
  //   $pageURL = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/"));
