@@ -62,6 +62,19 @@
     background-repeat: no-repeat no-repeat;
 }
 
+.secure-code {
+    margin-right: 0;
+    margin-top: 0px!important;
+    position: relative;
+    width: 85px!important;
+    height: 42px;
+    padding: 9px 8px 5px 8px!important;
+    float: left!important;
+    border: 1px solid #d8d8d8!important;
+    background-color: #c9270c!important;
+    color: #fff!important;
+}
+
 .port-baner-title {
     float: none;
     height: auto;
@@ -404,7 +417,7 @@
     margin-right: auto;
     font-family: helvetica;
     padding: 2% 4% 1.5%;
-    min-width: 170px;
+    min-width: auto;
     color: rgb(255, 255, 255);
     background-color: rgb(81, 92, 36);
     border-top-left-radius: 4px;

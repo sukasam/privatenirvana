@@ -88,8 +88,7 @@
                         <i class="icon icon-home2 grd-color txt-60"></i>
                     </div>
                     <p class="contact-info-adr">
-                        <span class="contact-info-adr-txt">ADDRESS<br /></span><?php echo $rowContact['contact_name'];?><br />8 Soi
-                        <?php echo $rowContact['contact_address'];?><br />
+                        <span class="contact-info-adr-txt">ADDRESS<br /></span><?php echo $rowContact['contact_name'];?><br /><?php echo $rowContact['contact_address'];?><br />
                     </p>
                 </div>
                 <div class="contact-info-right clearfix">
@@ -160,7 +159,7 @@
                             oninvalclass="setCustomValidity('Card name must contain at between 5 - 30 characters (aA-zZ)')"
                             onchange="try{setCustomValidity('')}catch(e){}">
                             
-                            <p id="charRandom" class="contact-send-btn checked" style="margin-right: 0;margin-top: -51px;position: relative;height: 42px;padding-top: 10px;"></p>
+                            <div id="charRandom" class="contact-send-btn secure-code checked"></div>
                             <input type="hidden" id="charChk" name="charChk" value="">
                     </div>
 

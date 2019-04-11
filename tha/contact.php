@@ -1,42 +1,42 @@
 <?php
     include_once('../include/app_top.php');
+
     if(isset($_GET['action']) && $_GET['action'] === 'sendContact'){
 
-        if($_POST['subcode'] == $_POST['charChk']){
-            $subname = $_POST['subname'];
-            $subemail = $_POST['subemail'];
-            $subsubject = $_POST['subsubject'];
-            $submessage = $_POST['submessage'];
-     
-             $strTo = EMAIL_CONTACT;
-             $strSubject = "=?UTF-8?B?".base64_encode($subsubject)."?=";
-             $strHeader .= "MIME-Version: 1.0' . \r\n";
-             $strHeader .= "Content-type: text/html; charset=utf-8\r\n"; 
-             $strHeader .= "From: ".$subname."<".$subemail.">\r\nReply-To: ".$subemail;
-             $strMessage = "<h3>".TH_CONTACT_US."</h3>";
-             $strMessage += "ชื่อ: ".$subname."<br/>";
-             $strMessage += "อีเมล์: ".$subname."<br/>";
-             $strMessage += "หัวข้อเรื่อง: ".$subname."<br/>";
-             $strMessage += "ข้อความ: ".nl2br($submessage)."<br/>";
-     
-             $flgSend = @mail($strTo,$strSubject,$strMessage,$strHeader);  // @ = No Show Error //
-             // if($flgSend){
-             //     echo "Email Sending.";
-             // }
-             // else{
-             //     echo "Email Can Not Send.";
-             // }
-     
-             echo "<script>alert('".TH_THANK_CONTACT_US."');window.location='".curPageURLWithoutParam()."'</script>;";
-        }else{
-            echo "<script>alert('".TH_SECU_CODE_ERRORS."');window.location='".curPageURLWithoutParam()."'</script>;";
-        }
+       if($_POST['subcode'] == $_POST['charChk']){
+        $subname = $_POST['subname'];
+        $subemail = $_POST['subemail'];
+        $subsubject = $_POST['subsubject'];
+        $submessage = $_POST['submessage'];
+ 
+         $strTo = EMAIL_CONTACT;
+         $strSubject = "=?UTF-8?B?".base64_encode($subsubject)."?=";
+         $strHeader .= "MIME-Version: 1.0' . \r\n";
+         $strHeader .= "Content-type: text/html; charset=utf-8\r\n"; 
+         $strHeader .= "From: ".$subname."<".$subemail.">\r\nReply-To: ".$subemail;
+         $strMessage = "<h3>".EN_CONTACT_US."</h3>";
+         $strMessage += "Name: ".$subname."<br/>";
+         $strMessage += "Email: ".$subname."<br/>";
+         $strMessage += "Subject: ".$subname."<br/>";
+         $strMessage += "Message: ".nl2br($submessage)."<br/>";
+ 
+         $flgSend = @mail($strTo,$strSubject,$strMessage,$strHeader);  // @ = No Show Error //
+         // if($flgSend){
+         //     echo "Email Sending.";
+         // }
+         // else{
+         //     echo "Email Can Not Send.";
+         // }
+ 
+         echo "<script>alert('".EN_THANK_CONTACT_US."');window.location='".curPageURLWithoutParam()."'</script>;";
+       }else{
+         echo "<script>alert('".EN_SECU_CODE_ERRORS."');window.location='".curPageURLWithoutParam()."'</script>;";
+       }
 
     }
 ?>
 <!DOCTYPE html>
 <html>
-
 
 <head>
     <meta charset="utf-8">
@@ -47,7 +47,7 @@
     <script src="js/form.js"></script>
 
     <script>
-    function secCode(){
+    function secCode() {
         var randomSec = Math.floor(10000 + Math.random() * 99999);
         document.getElementById("charChk").value = randomSec;
         document.getElementById("charRandom").innerHTML = randomSec;
@@ -81,7 +81,11 @@
                         <i class="icon icon-phone grd-color txt-56"></i>
                     </div>
                     <p class="contact-info-phone">
-                        <span class="contact-info-phone-span">ติดต่อ</span><br />โทร&#x3a; <?php echo $rowContact['contact_phone1'];?>, <br />ฝ่ายขาย <?php echo $rowContact['contact_phone2'];?><br />มือถือ&#x3a; <?php echo $rowContact['contact_phone3'];?>&nbsp;<br /> แฟ็กซ์&#x3a; <?php echo $rowContact['contact_phone4'];?><br />
+                        <span class="contact-info-phone-span">โทรศัพท์</span><br />โทร.&#x3a;
+                        <?php echo $rowContact['contact_phone1'];?>, <br />ฝ่ายขาย.
+                        <?php echo $rowContact['contact_phone2'];?><br />มือถือ.&#x3a;
+                        <?php echo $rowContact['contact_phone3'];?>&nbsp;<br /> แฟ็กซ์.&#x3a;
+                        <?php echo $rowContact['contact_phone4'];?><br />
                     </p>
                 </div>
                 <div class="contact-info-middle clearfix">
@@ -89,7 +93,8 @@
                         <i class="icon icon-home2 grd-color txt-60"></i>
                     </div>
                     <p class="contact-info-adr">
-                        <span class="contact-info-adr-txt">ที่อยู่<br /></span><?php echo $rowContact['contact_name_native'];?><br />เลขที่ 8
+                        <span
+                            class="contact-info-adr-txt">ที่อยู่<br /></span><?php echo $rowContact['contact_name_native'];?><br />
                         <?php echo $rowContact['contact_address_native'];?><br />
                     </p>
                 </div>
@@ -98,16 +103,18 @@
                         <i class="icon icon-mail2 grd-color txt-56"></i>
                     </div>
                     <p class="contact-info-em">
-                        <span class="contact-info-em-span">อีเมล์</span><br />อีเมล์&#x3a;
-                        <?php echo $rowContact['contact_email'];?><br />เว็บไซต์&#x3a; <?php echo $rowContact['contact_web'];?><br />
+                        <span class="contact-info-em-span">อีเมล์</span><br />Email&#x3a;
+                        <?php echo $rowContact['contact_email'];?><br />Website&#x3a;
+                        <?php echo $rowContact['contact_web'];?><br />
                     </p>
                 </div>
             </div>
         </div>
         <div class="contact-form-sect clearfix">
             <p class="contact-form-title">
-                <span class="textspan">ส่งข้อความถึงเรา</span><br />&nbsp; &nbsp; &nbsp; ขอขอบคุณท่านลูกค้า
-                หากสนใจโครงการของเรา หรือมีข้อติชมโปรดส่งข้อความเสนอแนะเราได้ที่นี่<br />
+                <span class="textspan">ส่งข้อความถึงเรา</span><br />&nbsp; &nbsp; &nbsp; 
+เราขอขอบคุณท่านลูกค้า
+                หากท่านมีข้อเสนอแนะหรือต้องการสอบถามข้อมูลใด ๆ เพิ่มเติม โปรดส่งข้อความหรือติดต่อหาเรา<br />
             </p>
 
             <form name="submitform" method="post" action="?action=sendContact">
@@ -127,7 +134,7 @@
 
                     <div class="contact-input1 clearfix">
 
-                        <label for="pn-email">อีเมล​์</label>
+                        <label for="pn-email">อีเมล์</label>
                         <input id="pn-email" type="text" placeholder="your@email.com" name="subemail" class="txt-16"
                             onkeyup="checkform()" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                             oninvalclass="setCustomValidity('Card name must contain at between 5 - 30 characters (aA-zZ)')"
@@ -137,7 +144,7 @@
 
                     <div class="contact-input1 clearfix">
 
-                        <label for="pn-subject">หัวข้อเรื่อง</label>
+                        <label for="pn-subject">หัวข้อ</label>
                         <input id="pn-subject" type="text" placeholder="Your subject..." name="subsubject"
                             class="txt-16" onkeyup="checkform()" pattern="[a-zA-Zก-ุฯ-๙\s]{5,1000}"
                             oninvalclass="setCustomValidity('Card name must contain at between 5 - 30 characters (aA-zZ)')"
@@ -161,16 +168,15 @@
                             oninvalclass="setCustomValidity('Card name must contain at between 5 - 30 characters (aA-zZ)')"
                             onchange="try{setCustomValidity('')}catch(e){}">
 
-                            <p id="charRandom" class="contact-send-btn checked" style="margin-right: 0;margin-top: -51px;position: relative;height: 42px;padding-top: 10px;"></p>
-                            <input type="hidden" id="charChk" name="charChk" value="">
-
+                        <div id="charRandom" class="contact-send-btn secure-code checked"></div>
+                        <input type="hidden" id="charChk" name="charChk" value="">
                     </div>
 
 
 
                     <div class="contact-input1 clearfix">
 
-                        <input id="submitbutton" type="submit" value="Send Message"
+                        <input id="submitbutton" type="submit" value="ส่งข้อความ"
                             class="contact-send-btn submit_btn checked">
 
                     </div>

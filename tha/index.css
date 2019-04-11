@@ -2565,6 +2565,7 @@
         background-color: rgba(0, 0, 0, 0.298039);
         padding-top: 12px;
         padding-bottom: 8px;
+        min-height: 113px;
     }
 
     .pn-baner-txt3 {
@@ -2600,11 +2601,12 @@
         padding-top: 12px;
         padding-bottom: 8px;
         background-color: rgba(0, 0, 0, 0.298039);
+        min-height: 113px;
     }
 
     .pn-baner-txt4 {
-        font-size: 30px;
-        line-height: 40px;
+        font-size: 25px;
+        line-height: 30px;
         text-align: center;
         letter-spacing: 2px;
     }
@@ -2671,8 +2673,8 @@
     }
 
     .pn-baner-txt2 {
-        font-size: 30px;
-        line-height: 40px;
+        font-size: 25px;
+        line-height: 30px;
         text-align: center;
         letter-spacing: 2px;
     }
@@ -2874,6 +2876,13 @@
     .pn-about-details {
         text-align: center;
     }
+}
+
+@media only screen and (max-width: 420px) {
+.pn-baner-title2 {
+    width: 100%;
+    padding: 12px 4% 8px 4%;
+}
 }
 
 @media only screen and (max-width: 400px) {

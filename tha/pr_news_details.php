@@ -60,11 +60,31 @@ $newDate = date("M d, Y", $originalDate);
 
                     ?>
 
-                    <!-- <div class="news-month-select">
-                        <select>
-                            <option value="February2019">March 2019</option>
+                    <div class="news-month-select">
+                        <select onchange="selectMonth(this)" id="monthSl">
+                            <?php
+                            $quMenuNews2 = mysqli_query($conn,"SELECT * FROM `s_news` WHERE `status` = 0
+                            GROUP BY `news_month`
+                            ORDER BY `create_date` DESC");
+    
+                            while($rowMenuNews2 = mysqli_fetch_array($quMenuNews2,MYSQLI_ASSOC)){
+
+                                $originalDateNews2 = strtotime($rowMenuNews2['create_date']);
+                                $newDateNews2 = date("M Y", $originalDateNews2);
+                                $newDateNewsS2 = date("Y-m", $originalDateNews2);
+
+                            ?>
+                            <option value="?newsMonth=<?php echo $newDateNewsS2;?>" <?php if($_GET['newsMonth'] === $newDateNewsS2){echo 'selected="selected"';}?>><?php echo dateThai2($newDateNews2);?></option>
+                            <?php }?>
                         </select>
-                    </div> -->
+                    </div>
+
+                    <script>
+                    function selectMonth(a) {
+                        var x = (a.value || a.options[a.selectedIndex].value);  //crossbrowser solution =)
+                        window.location = x;
+                    }
+                    </script>
 
                 </div>
 

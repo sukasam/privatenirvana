@@ -127,11 +127,8 @@ $rowProject = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM s_project WHE
 
                     </div>
 
-                    <div class="port-houseinfo-details"><span class=" txt-20 txt-bold">“ Natural Design House
-                            ”</span><br />
-                        From June 2004, Private Nirvana Ladprao is 27 Rai and has 92 single houses, club house, swimming
-                        pool and public park. All were sold out at the end of 2005 .<br /><br />
-                        • Located at 100 Soi Yothin Phattha n a, Pradit Manutham Rd., K longc han, Bangkapi, Bangkok
+                    <div class="port-houseinfo-details"><span class=" txt-20 txt-bold"><?php echo $rowProject['box1_2_native'];?></span><br />
+                    <?php echo $rowProject['box1_4_native'];?>
                     </div>
 
                 </div>

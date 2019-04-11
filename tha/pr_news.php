@@ -68,7 +68,7 @@ include_once("../include/app_top.php");
                                 $newDateNewsS2 = date("Y-m", $originalDateNews2);
 
                             ?>
-                            <option value="?newsMonth=<?php echo $newDateNewsS2;?>" <?php if($_GET['newsMonth'] === $newDateNewsS2){echo 'selected="selected"';}?>><?php echo $newDateNews2;?></option>
+                            <option value="?newsMonth=<?php echo $newDateNewsS2;?>" <?php if($_GET['newsMonth'] === $newDateNewsS2){echo 'selected="selected"';}?>><?php echo dateThai2($newDateNews2);?></option>
                             <?php }?>
                         </select>
                     </div>
